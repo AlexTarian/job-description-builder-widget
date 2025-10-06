@@ -327,16 +327,24 @@
   
     // ===== Rendering =====
     function setStepMeta(){
-      let totalSteps = 2; // categories + summary; duty steps add dynamically
-      totalSteps += state.categoryOrder.length; // each chosen category is a step
-  
+      // while on categories, count the live selection; otherwise use the locked-in order
+      const chosenCount = (state.flow === 'categories')
+        ? state.selectedCategories.size
+        : state.categoryOrder.length;
+    
+      const totalSteps = 2 + chosenCount; // categories + each chosen category + summary
+    
       let curStep = 1; // categories = step 1
-      if(state.flow==='duties'){ curStep = 1 + (state.currentIndex+1); }
-      if(state.flow==='summary'){ curStep = 1 + state.categoryOrder.length + 1; }
-  
-      el.stepNum.textContent = String(curStep);
+      if (state.flow === 'duties')   curStep = 1 + (state.currentIndex + 1);
+      if (state.flow === 'summary')  curStep = 1 + chosenCount + 1;
+    
+      el.stepNum.textContent   = String(curStep);
       el.stepTotal.textContent = String(totalSteps);
-      const pct = Math.round((curStep-1) / (totalSteps-1) * 100);
+    
+      const pct = (totalSteps > 1)
+        ? Math.round(((curStep - 1) / (totalSteps - 1)) * 100)
+        : 0;
+    
       el.progressBar.style.width = pct + '%';
     }
   
