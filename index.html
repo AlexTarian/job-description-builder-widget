@@ -155,7 +155,7 @@
     };
 
     (async function(){
-      const DATA_URL = new URL('./assets/data/duties.json', location.href).href;
+      const DATA_URL = new URL('./assets/duties/duties.json', location.href).href;
     
       async function loadDuties() {
         const res = await fetch(DATA_URL, { cache: 'no-store' });
@@ -173,10 +173,7 @@
     
       // After defining `state` but before first render:
       state.dutiesByCategory = await loadDuties();
-    
-      // Make sure your categories array includes keys for everything in the JSON.
-      // (You already have: farmwork, equipment, livestock, maintenance, trucking, chemical, construction, supervision, beekeeping)
-      
+          
       // Continue with your normal init/render:
       renderCategories();
     })();
