@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Job Duties Wizard — Prototype (fixed tiles)</title>
+  <title>Job Description Builder</title>
   <style>
     :root{
     --bg:#fff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0; --primary:#2563eb; --gold:#f59e0b;
@@ -84,7 +84,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>Job Duties Wizard — Prototype</h1>
+  <h1>Job Description Builder</h1>
   <div class="small">Flow: Pick Categories → Select Duties (tap to select, ★ to mark primary) → Final Summary (confirm primaries) → Save</div>
 
   <div id="wizard" class="wizard" role="region" aria-label="Job duties wizard">
@@ -112,8 +112,13 @@
   <div class="section" style="margin-top:12px;">
     <label for="preview" class="small">Job description preview</label>
     <textarea id="preview" readonly></textarea>
+    <button id="editWizardBtn" class="btn ghost" type="button" style="margin-top:8px; display:none;">
+      Edit with wizard
+    </button>
   </div>
-
+  <div>
+    <button id="editWizardBtn" class="btn ghost" type="button" style="margin-top:8px;">Edit with wizard</button>
+  </div>
   <div class="section small" id="status"></div>
 </div>
 <script>
@@ -184,7 +189,12 @@
       stepTotal: document.getElementById('stepTotal'),
       progressBar: document.getElementById('progressBar'),
       status: document.getElementById('status'),
+      editWizardBtn: document.getElementById('editWizardBtn'),
     };
+
+    if (el.editWizardBtn) {
+      el.editWizardBtn.addEventListener('click', exitDoneMode);
+    }
   
     const setStatus = (t)=> el.status.textContent = t || '';
     const debounce = (fn, wait=300)=>{ let t; const d=(...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; d.flush=(...a)=>{ clearTimeout(t); fn(...a); }; return d; };
@@ -242,6 +252,38 @@
       const combined = [primText, secText].filter(Boolean).join(' ');
       return combined || buildParagraph(); // fallback if both empty
     }
+
+    function enterDoneMode() {
+      // Hide wizard UI
+      document.getElementById('wizard').style.display = 'none';
+    
+      // Make preview editable + fill with split text
+      el.preview.removeAttribute('readonly');
+      el.preview.value = renderPreviewText();
+      el.preview.focus();
+      el.preview.setSelectionRange(el.preview.value.length, el.preview.value.length);
+      el.preview.addEventListener('input', () => {
+        if (state.flow === 'done') autosend();
+      });
+    
+      // Show the “Edit with wizard” button
+      if (el.editWizardBtn) el.editWizardBtn.style.display = '';
+    
+      state.flow = 'done';
+      autosend.flush();
+      setStatus('You can edit the text directly. Changes will be saved automatically.');
+      try { JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
+    }
+    
+    function exitDoneMode() {
+      // Show wizard again at the summary step (so they can tweak primaries, etc.)
+      document.getElementById('wizard').style.display = '';
+      el.preview.setAttribute('readonly', 'readonly');
+    
+      state.flow = 'summary';
+      renderSummary();
+      setStatus('');
+    }
   
     function buildPayload(){
       const out = { primary:[], other:[], selected:[], description:'' };
@@ -252,7 +294,9 @@
           if(v.primary) out.primary.push(v.duty); else out.other.push(v.duty);
         }
       }
-      out.description = renderPreviewText();
+      out.description = (state.flow === 'done')
+        ? String(el.preview.value || '').trim()
+        : renderPreviewText();
       return JSON.stringify(out);
     }
   
@@ -439,7 +483,7 @@
   
       el.backBtn.onclick = ()=>{ if(state.categoryOrder.length>0){ state.currentIndex = state.categoryOrder.length-1; renderDuties(); } else { renderCategories(); } };
       el.nextBtn.textContent = 'Confirm & Save';
-      el.nextBtn.onclick = ()=>{ el.preview.value = buildParagraph(); autosend.flush(); setStatus('Saved.'); };
+      el.nextBtn.onclick = () => { enterDoneMode(); };
   
       setStepMeta(); resize();
     }
