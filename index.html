@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Duties Wizard — Prototype (fixed tiles)</title>
+  <style>
+    :root{
+    --bg:#fff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0; --primary:#2563eb; --gold:#f59e0b;
+    --radius:14px; --gap:10px; --control-h:42px;
+    }
+    *{ box-sizing: border-box; }
+    body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:var(--fg); background:var(--bg); }
+    .wrap{ max-width: 860px; margin: 14px auto; padding: 16px; }
+    h1{ font-size: 18px; margin: 0 0 10px; }
+    .small{ font-size:12px; color:var(--muted); }
+    .muted{ color:var(--muted); }
+  
+  
+    /* Wizard container */
+    .wizard{ position:relative; border:1px solid var(--line); border-radius: var(--radius); padding:16px; }
+    .wiz-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .wiz-title{ font-weight:700; }
+    .wiz-sub{ font-size:12px; color:var(--muted); }
+    .progress{ height:6px; background:#f1f5f9; border-radius:999px; overflow:hidden; margin-top:8px; }
+    .progress > i{ display:block; height:100%; width:0%; background:var(--primary); }
+  
+  
+    /* Category grid (kept visual) */
+    .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: var(--gap); margin-top:12px; }
+    .tile-cat{ border:1px solid var(--line); border-radius:0; padding:12px; cursor:pointer; background:#fff; display:flex; gap:10px; align-items:flex-start; min-height:64px; }
+    .tile-cat:hover{ box-shadow: 0 2px 10px rgba(0,71,171,.2); }
+    .tile-cat.selected{ outline: 2px solid var(--primary); background: #f8fbff; }
+    .tile-cat .icon{ font-size:18px; line-height:1; }
+    .tile-cat .txt{ display:flex; flex-direction:column; gap:4px; }
+    .tile-cat .title{ font-weight:600; font-size:14px; }
+    .tile-cat .sub{ font-size:12px; color:var(--muted); }
+  
+  
+    /* Duty/summary: modern full-width list rows */
+    .list{ display:flex; flex-direction:column; gap: 0; margin-top:0; max-height:360px; overflow:auto; }
+    .tile{ border:none; border-radius:0; padding:12px; cursor:pointer; background:#fff; display:flex; gap:10px; align-items:center; min-height:56px; }
+    .tile:hover{ background:#f8fafc; }
+    .tile .accent{ width:5px; align-self:stretch; background:transparent; }
+    .tile.secondary{ background:linear-gradient(to right,#f0f7ff, #ffffff); }
+    .tile.secondary .accent{ background: var(--primary); }
+    .tile.primary{ background:linear-gradient(to right,#fffbeb, #ffffff); }
+    .tile.primary .accent{ background: var(--gold); }
+    .tile .txt{ display:flex; flex-direction:column; gap:2px; flex:1; }
+    .tile .title{ font-weight:600; font-size:14px; }
+    .tile .sub{ font-size:12px; color:var(--muted); }
+    .tile .actions { margin-left:auto; display:flex; gap:8px; }
+    .btn.x { border:0 solid var(--line); background:#fff; border-radius:0; padding:6px 8px; font-size:18px; cursor:pointer; }
+    .btn.x:hover { background:transparent; }
+  
+    
+    /* star on the left with three states */
+    .star{ margin-right:6px; border:0 solid var(--line); background:#fff; cursor:pointer; font-size:25px; }
+    .star.gray{ color:gray; background:transparent; }
+    .star.secondary{ color:gray; background:transparent; }
+    .star.active{ color:var(--gold); background:transparent; }
+  
+    .summary-scroll { max-height: 420px; overflow:auto; border-top:1px solid var(--line); padding-top:8px; }
+  
+    /* Footer buttons */
+    .row{ display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:14px; }
+    .btn{ border:1px solid var(--line); background:#f8fafc; border-radius:30px; padding:10px 12px; font-size:14px; cursor:pointer; }
+    .btn.primary{ background:var(--primary); color:#fff; border-color:var(--primary); }
+    .btn.ghost{ background:#fff; }
+    .btn:disabled{ opacity:.5; cursor:not-allowed; }
+  
+    textarea{ width:100%; min-height:140px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; }
+  </style>
+  <!-- Jotform Widget API shim (so it runs outside Jotform) -->
+  <script>
+    window.JFCustomWidget = window.JFCustomWidget || {
+      subscribe(ev, cb){ if(ev==='ready'){ document.addEventListener('DOMContentLoaded', cb);} if(ev==='submit'){ /* local noop */ } if(ev==='populate'){ /* noop */ } },
+      getWidgetSettings(cb){ cb({}); },
+      sendSubmit(obj){ console.log('sendSubmit (local)', obj); },
+      requestFrameResize(){ /* noop */ }
+    };
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <h1>Job Duties Wizard — Prototype</h1>
+  <div class="small">Flow: Pick Categories → Select Duties (tap to select, ★ to mark primary) → Final Summary (confirm primaries) → Save</div>
+
+  <div id="wizard" class="wizard" role="region" aria-label="Job duties wizard">
+    <div class="wiz-head">
+      <div>
+        <div id="wizTitle" class="wiz-title">Step 1: Choose applicable categories</div>
+        <div id="wizSub" class="wiz-sub">Select one or more categories to include</div>
+      </div>
+      <div id="stepBadge" class="small">Step <span id="stepNum">1</span>/<span id="stepTotal">3</span></div>
+    </div>
+    <div class="progress"><i id="progressBar" style="width:0%"></i></div>
+
+    <div id="stage"></div>
+
+    <div class="row">
+      <div>
+        <button id="backBtn" class="btn ghost" type="button">Back</button>
+      </div>
+      <div style="display:flex; gap:10px">
+        <button id="nextBtn" class="btn primary" type="button">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:12px;">
+    <label for="preview" class="small">Job description preview</label>
+    <textarea id="preview" readonly></textarea>
+  </div>
+
+  <div class="section small" id="status"></div>
+</div>
+<script>
+  (function(){
+    // ===== State =====
+    const state = {
+      flow: 'categories', // 'categories' | 'duties' | 'summary'
+      categories: [
+        { key:'equipment', label:'Equipment Operation', icon:'🚜' },
+        { key:'livestock', label:'Livestock', icon:'🐄' },
+        { key:'maintenance', label:'Repair & Maintenance', icon:'🛠️' },
+        { key:'crops', label:'Crop Work', icon:'🌾' },
+        { key:'trucking', label:'Heavy Trucking', icon:'🚚' },
+        { key:'chem', label:'Chemical Application', icon:'🧪' },
+        { key:'construction', label:'Construction', icon:'👷' },
+        { key:'supervision', label:'Supervision', icon:'🧑‍💼' },
+        { key:'bees', label:'Beekeeping', icon:'🐝' }
+      ],
+      selectedCategories: new Set(),
+      categoryOrder: [],
+      currentIndex: 0,
+      dutiesByCategory: new Map([
+        ['equipment', [
+          { duty:'Operate self-propelled machinery', title:'Agricultural Equipment Operator' },
+          { duty:'Operate sprayers and apply chemicals/fertilizers', title:'Agricultural Equipment Operator' },
+          { duty:'Maintain and repair farm equipment', title:'Agricultural Equipment Operator' }
+        ]],
+        ['livestock', [
+          { duty:'Feed and care for livestock', title:'Livestock Farmworker' },
+          { duty:'Assist with animal health and breeding', title:'Livestock Farmworker' }
+        ]],
+        ['maintenance', [
+          { duty:'Install and repair fences and irrigation', title:'General Farmworker' },
+          { duty:'Maintain and repair farm equipment', title:'General Farmworker' }
+        ]],
+        ['crops', [
+          { duty:'Plant and cultivate crops', title:'General Farmworker' },
+          { duty:'Harvest crops', title:'Graders and Sorters' }
+        ]],
+        ['trucking', [
+          { duty:'Operate heavy trucks for on-farm transport', title:'Heavy Truck Driver' }
+        ]],
+        ['chem', [
+          { duty:'Apply agricultural chemicals and fertilizers', title:'Pesticide Handler' }
+        ]],
+        ['construction', [
+          { duty:'Assist with agricultural construction projects', title:'Construction Laborer' }
+        ]],
+        ['supervision', [
+          { duty:'Supervise and coordinate farm workers', title:'First-Line Supervisor' }
+        ]],
+        ['bees', [
+          { duty:'Maintain and manage beehives and apiaries', title:'Beekeeper' }
+        ]]
+      ]),
+      selections: new Map(), // Map<CategoryKey, Map<DutyKey, {duty,title,primary:boolean}>>
+    };
+  
+    // ===== DOM =====
+    const el = {
+      stage: document.getElementById('stage'),
+      preview: document.getElementById('preview'),
+      backBtn: document.getElementById('backBtn'),
+      nextBtn: document.getElementById('nextBtn'),
+      skipBtn: document.getElementById('skipBtn'),
+      wizTitle: document.getElementById('wizTitle'),
+      wizSub: document.getElementById('wizSub'),
+      stepNum: document.getElementById('stepNum'),
+      stepTotal: document.getElementById('stepTotal'),
+      progressBar: document.getElementById('progressBar'),
+      status: document.getElementById('status'),
+    };
+  
+    const setStatus = (t)=> el.status.textContent = t || '';
+    const debounce = (fn, wait=300)=>{ let t; const d=(...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; d.flush=(...a)=>{ clearTimeout(t); fn(...a); }; return d; };
+  
+    // ===== Utilities =====
+    const keyFrom = (it)=> `${it.duty}${it.title||''}`;
+    function ensureCatMap(cat){ if(!state.selections.has(cat)) state.selections.set(cat, new Map()); return state.selections.get(cat); }
+  
+    function toggleDuty(cat, it){
+      const m = ensureCatMap(cat); const k = keyFrom(it);
+      if(m.has(k)) m.delete(k); else m.set(k, { ...it, primary:false });
+      syncOutput();
+    }
+    function togglePrimary(cat, it){
+      const m = ensureCatMap(cat); const k = keyFrom(it);
+      if(!m.has(k)){ m.set(k, { ...it, primary:true }); }
+      else { const cur = m.get(k); cur.primary = !cur.primary; m.set(k, cur); }
+      syncOutput();
+    }
+  
+    function currentCatKey(){ return state.categoryOrder[state.currentIndex] || null; }
+    function countSelected(){ let n=0, prim=0; for(const m of state.selections.values()){ for(const v of m.values()){ n++; if(v.primary) prim++; } } return { n, prim }; }
+  
+    function buildParagraph(){
+      const all = [];
+      for(const [, m] of state.selections.entries()){
+        for(const v of m.values()) all.push(v.duty);
+      }
+      const txt = all.map(s=>s.trim()).filter(Boolean).join('; ');
+      if(!txt) return '';
+      return /[.!?]$/.test(txt) ? txt : txt + '.';
+    }
+  
+    function buildPreviewSections() {
+      const primary = [];
+      const secondary = [];
+      for (const [, m] of state.selections.entries()) {
+        for (const v of m.values()) (v.primary ? primary : secondary).push(v.duty);
+      }
+      return { primary, secondary };
+    }
+  
+    function renderPreviewText() {
+      const { primary, secondary } = buildPreviewSections();
+      const primText = primary.length ? `Primary duties include: ${primary.join('; ')}.` : '';
+      const secText  = secondary.length ? `Additional duties may include: ${secondary.join('; ')}.` : '';
+      const combined = [primText, secText].filter(Boolean).join(' ');
+      return combined || buildParagraph(); // fallback if both empty
+    }
+  
+    function buildPayload(){
+      const out = { primary:[], other:[], selected:[], description:'' };
+      for(const [cat, m] of state.selections.entries()){
+        for(const v of m.values()){
+          const rec = { duty:v.duty, title:v.title||'Unclassified', category:cat, primary: !!v.primary };
+          out.selected.push(rec);
+          if(v.primary) out.primary.push(v.duty); else out.other.push(v.duty);
+        }
+      }
+      out.description = renderPreviewText();
+      return JSON.stringify(out);
+    }
+  
+    // ===== Autosave to Jotform =====
+    const sendNow = ()=>{ try{ JFCustomWidget.sendSubmit({ value: buildPayload() }); }catch{} };
+    const autosend = debounce(sendNow, 400);
+    const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
+  
+    if (typeof JFCustomWidget.subscribe === 'function'){
+      JFCustomWidget.subscribe('submit', ()=> autosend.flush());
+      JFCustomWidget.subscribe('populate', (msg)=>{
+        if(msg && msg.value){
+          try{
+            const data = JSON.parse(msg.value);
+            state.selections.clear();
+            (data.selected||[]).forEach(r=>{
+              const cat = r.category || 'general';
+              const m = ensureCatMap(cat);
+              const k = keyFrom(r);
+              m.set(k, { duty:r.duty, title:r.title, primary: !!r.primary });
+            });
+            renderSummary();
+          }catch{}
+        }
+      });
+    }
+  
+    function resize(){ try{ JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); }catch{} }
+  
+    // ===== Rendering =====
+    function setStepMeta(){
+      let totalSteps = 2; // categories + summary; duty steps add dynamically
+      totalSteps += state.categoryOrder.length; // each chosen category is a step
+  
+      let curStep = 1; // categories = step 1
+      if(state.flow==='duties'){ curStep = 1 + (state.currentIndex+1); }
+      if(state.flow==='summary'){ curStep = 1 + state.categoryOrder.length + 1; }
+  
+      el.stepNum.textContent = String(curStep);
+      el.stepTotal.textContent = String(totalSteps);
+      const pct = Math.round((curStep-1) / (totalSteps-1) * 100);
+      el.progressBar.style.width = pct + '%';
+    }
+  
+    function renderCategories(){
+      state.flow = 'categories';
+      el.wizTitle.textContent = 'Step 1: Choose applicable categories';
+      el.wizSub.textContent = 'Select one or more categories to include';
+      el.backBtn.disabled = true;
+  
+      const grid = document.createElement('div'); grid.className='grid';
+      state.categories.forEach(cat=>{
+        const selected = state.selectedCategories.has(cat.key);
+        const tile = document.createElement('div'); tile.className='tile-cat'; if(selected) tile.classList.add('selected'); tile.tabIndex=0;
+        const sub = selected ? 'Selected' : 'Tap to select';
+        tile.innerHTML = `<div class="icon">${cat.icon}</div><div class="txt"><div class="title">${cat.label}</div><div class="sub">${sub}</div></div>`;
+        const toggle=()=>{ if(selected){ state.selectedCategories.delete(cat.key);} else { state.selectedCategories.add(cat.key);} renderCategories(); };
+        tile.onclick = toggle; tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
+        grid.appendChild(tile);
+      });
+      el.stage.innerHTML=''; el.stage.appendChild(grid);
+  
+      el.nextBtn.onclick = ()=>{
+        state.categoryOrder = Array.from(state.selectedCategories);
+        if(state.categoryOrder.length===0){ setStatus('Please select at least one category (you can change later).'); return; }
+        state.currentIndex = 0; renderDuties(); setStatus('');
+      };
+      setStepMeta(); resize();
+    }
+  
+    function renderDuties(){
+      state.flow = 'duties';
+      const cat = currentCatKey();
+      const catMeta = state.categories.find(c=>c.key===cat);
+      const items = (state.dutiesByCategory.get(cat) || []).slice();
+  
+      el.wizTitle.textContent = `Select duties: ${catMeta?.label||cat}`;
+      el.wizSub.textContent = 'Tap tiles to select/deselect; tap ★ to mark primary';
+      el.backBtn.disabled = false;
+  
+      const list = document.createElement('div'); list.className='list';
+      const selMap = ensureCatMap(cat);
+  
+      items.forEach(it=>{
+        const k = keyFrom(it);
+        const selected = selMap.has(k);
+        const v = selected ? selMap.get(k) : { ...it, primary:false };
+  
+        const tile = document.createElement('div');
+        tile.className = 'tile' + (selected ? (v.primary ? ' primary' : ' secondary') : '');
+        tile.tabIndex=0;
+        const starCls = selected ? (v.primary ? 'star active' : 'star secondary') : 'star gray';
+        const subTxt = selected ? (v.primary ? 'Primary' : 'Secondary') : 'Tap to Select';
+  
+        tile.innerHTML = `
+          <i class="accent"></i>
+          <button class="${starCls}" type="button" aria-pressed="${v.primary}">★</button>
+          <div class="txt"><div class="title">${it.duty}</div>${subTxt?`<div class="sub">${subTxt}</div>`:''}</div>`;
+  
+        const toggle = ()=>{ toggleDuty(cat, it); renderDuties(); };
+        const toggleStar = (e)=>{ e.stopPropagation(); togglePrimary(cat, it); renderDuties(); };
+  
+        tile.onclick = toggle; tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
+        tile.querySelector('.star').onclick = toggleStar;
+  
+        list.appendChild(tile);
+      });
+  
+      el.stage.innerHTML=''; el.stage.appendChild(list);
+  
+      el.backBtn.onclick = ()=>{
+        if(state.currentIndex===0){ renderCategories(); }
+        else { state.currentIndex--; renderDuties(); }
+      };
+      el.nextBtn.onclick = ()=>{ state.currentIndex++; if(state.currentIndex >= state.categoryOrder.length){ renderSummary(); } else { renderDuties(); } };
+  
+      setStepMeta(); resize();
+    }
+  
+    function renderSummary(){
+      state.flow = 'summary';
+      el.wizTitle.textContent = 'Review selected duties';
+      const counts = countSelected();
+      el.wizSub.innerHTML = `Primary duties: <b>${counts.prim}</b> • Total selected: <b>${counts.n}</b>`;
+      el.backBtn.disabled = false;
+  
+      const primary=[], other=[];
+      for (const [cat, m] of state.selections.entries()){
+        for (const v of m.values()){ (v.primary?primary:other).push({ ...v, cat }); }
+      }
+  
+      const wrap = document.createElement('div');
+  
+      const section = (title, arr)=>{
+        const box = document.createElement('div');
+        const h = document.createElement('div'); h.className='row'; h.innerHTML = `<div class="small"><b>${title}</b></div>`; box.appendChild(h);
+        const list = document.createElement('div'); list.className='list summary-scroll';
+        arr.forEach(it=>{
+          const tile = document.createElement('div'); tile.className = 'tile ' + (it.primary?'primary':'secondary');
+          const starCls = it.primary ? 'star active' : 'star secondary';
+          const subTxt = it.primary ? 'Primary' : 'Secondary';
+          tile.innerHTML = `
+            <i class="accent"></i>
+            <button class="${starCls}" type="button" aria-pressed="${it.primary}">★</button>
+            <div class="txt">
+              <div class="title">${it.duty}</div>
+              <div class="sub">${subTxt}</div>
+            </div>
+            <div class="actions">
+              <button class="btn x" type="button" aria-label="Remove duty">×</button>
+            </div>
+          `;
+          tile.onclick = ()=>{ toggleDuty(it.cat, it); renderSummary(); };
+          tile.querySelector('.star').onclick = (e)=>{ e.stopPropagation(); togglePrimary(it.cat, it); renderSummary(); };
+          tile.querySelector('.btn.x').onclick = (e)=>{
+            e.stopPropagation();
+            if (confirm('Remove this duty from the job?')) {
+              // remove selection
+              const m = ensureCatMap(it.cat);
+              m.delete(`${it.duty}\u0001${it.title||''}`);
+              syncOutput();
+              renderSummary();
+            }
+          };
+          list.appendChild(tile);
+        });
+        box.appendChild(list); return box;
+      };
+  
+      if(primary.length){ wrap.appendChild(section('Primary duties', primary)); }
+      if(other.length){ wrap.appendChild(section('Other selected duties', other)); }
+  
+      el.stage.innerHTML=''; el.stage.appendChild(wrap);
+  
+      el.backBtn.onclick = ()=>{ if(state.categoryOrder.length>0){ state.currentIndex = state.categoryOrder.length-1; renderDuties(); } else { renderCategories(); } };
+      el.nextBtn.textContent = 'Confirm & Save';
+      el.nextBtn.onclick = ()=>{ el.preview.value = buildParagraph(); autosend.flush(); setStatus('Saved.'); };
+  
+      setStepMeta(); resize();
+    }
+  
+    // Init
+    function init(){ renderCategories(); el.preview.value = buildParagraph(); }
+    JFCustomWidget.subscribe('ready', init);
+  })();
+  </script>
+</body>
+</html>
