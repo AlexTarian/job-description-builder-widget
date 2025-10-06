@@ -32,6 +32,7 @@
     .tile-cat:hover{ box-shadow: 0 2px 10px rgba(0,71,171,.2); }
     .tile-cat.selected{ outline: 2px solid var(--primary); background: #f8fbff; }
     .tile-cat .icon{ font-size:18px; line-height:1; }
+    .tile-cat .icon img { width:20px; height:20px; display:block; }
     .tile-cat .txt{ display:flex; flex-direction:column; gap:4px; }
     .tile-cat .title{ font-weight:600; font-size:14px; }
     .tile-cat .sub{ font-size:12px; color:var(--muted); }
@@ -188,7 +189,16 @@
   
     const setStatus = (t)=> el.status.textContent = t || '';
     const debounce = (fn, wait=300)=>{ let t; const d=(...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; d.flush=(...a)=>{ clearTimeout(t); fn(...a); }; return d; };
-  
+
+    // --- Icon base and helper ---
+    const ICON_BASE = (()=>{
+      return new URL('./assets/icons/', location.href).href;
+    })();
+    
+    function iconUrlFor(catKey){
+      return ICON_BASE.replace(/\/+$/,'/') + encodeURIComponent(catKey) + '.svg';
+    }
+    
     // ===== Utilities =====
     const keyFrom = (it)=> `${it.duty}${it.title||''}`;
     function ensureCatMap(cat){ if(!state.selections.has(cat)) state.selections.set(cat, new Map()); return state.selections.get(cat); }
@@ -300,7 +310,18 @@
         const selected = state.selectedCategories.has(cat.key);
         const tile = document.createElement('div'); tile.className='tile-cat'; if(selected) tile.classList.add('selected'); tile.tabIndex=0;
         const sub = selected ? 'Selected' : 'Tap to select';
-        tile.innerHTML = `<div class="icon">${cat.icon}</div><div class="txt"><div class="title">${cat.label}</div><div class="sub">${sub}</div></div>`;
+        tile.innerHTML = `
+          <div class="icon">
+            <img alt="" src="${cat.iconUrl || iconUrlFor(cat.key)}"
+                 onerror="
+                   // fallback: replace the broken <img> with the emoji
+                   this.outerHTML = '<span>${(cat.icon || '•').replace(/'/g, "\\'")}</span>';
+                 ">
+          </div>
+          <div class="txt">
+            <div class="title">${cat.label}</div>
+            <div class="sub">${sub}</div>
+          </div>`;
         const toggle=()=>{ if(selected){ state.selectedCategories.delete(cat.key);} else { state.selectedCategories.add(cat.key);} renderCategories(); };
         tile.onclick = toggle; tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
         grid.appendChild(tile);
