@@ -153,6 +153,33 @@
       dutiesByCategory: new Map(),
       selections: new Map(), // Map<CategoryKey, Map<DutyKey, {duty,title,primary:boolean}>>
     };
+
+    (async function(){
+      const DATA_URL = new URL('./assets/data/duties.json', location.href).href;
+    
+      async function loadDuties() {
+        const res = await fetch(DATA_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load duties.json');
+        const list = await res.json();
+        // Group by category into Map<string, Array<{duty,title}>>
+        const byCat = new Map();
+        for (const row of list) {
+          const cat = String(row.category || 'farmwork');
+          if (!byCat.has(cat)) byCat.set(cat, []);
+          byCat.get(cat).push({ duty: row.duty, title: row.title });
+        }
+        return byCat;
+      }
+    
+      // After defining `state` but before first render:
+      state.dutiesByCategory = await loadDuties();
+    
+      // Make sure your categories array includes keys for everything in the JSON.
+      // (You already have: farmwork, equipment, livestock, maintenance, trucking, chemical, construction, supervision, beekeeping)
+      
+      // Continue with your normal init/render:
+      renderCategories();
+    })();
   
     // ===== DOM =====
     const el = {
