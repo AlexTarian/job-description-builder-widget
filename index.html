@@ -122,15 +122,15 @@
     const state = {
       flow: 'categories', // 'categories' | 'duties' | 'summary'
       categories: [
-        { key:'farmer', label:'General Farming', icon:'🌾' },
+        { key:'farmwork', label:'General Farming', icon:'🌾' },
         { key:'equipment', label:'Equipment Operation', icon:'🚜' },
         { key:'livestock', label:'Livestock Work', icon:'🐄' },
         { key:'maintenance', label:'Repair & Maintenance', icon:'🛠️' },
         { key:'trucking', label:'Trucking', icon:'🚚' },
         { key:'chemical', label:'Chemical Application', icon:'🧪' },
         { key:'construction', label:'Construction', icon:'👷' },
-        { key:'supervisor', label:'Supervision', icon:'🧑‍💼' },
-        { key:'beekeeper', label:'Beekeeping', icon:'🐝' }
+        { key:'supervision', label:'Supervision', icon:'🧑‍💼' },
+        { key:'beekeeping', label:'Beekeeping', icon:'🐝' }
       ],
       selectedCategories: new Set(),
       categoryOrder: [],
@@ -149,14 +149,14 @@
           { duty:'Install and repair fences and irrigation', title:'General Farmworker' },
           { duty:'Maintain and repair farm equipment', title:'General Farmworker' }
         ]],
-        ['crops', [
+        ['farmwork', [
           { duty:'Plant and cultivate crops', title:'General Farmworker' },
           { duty:'Harvest crops', title:'Graders and Sorters' }
         ]],
         ['trucking', [
           { duty:'Operate heavy trucks for on-farm transport', title:'Heavy Truck Driver' }
         ]],
-        ['chem', [
+        ['chemical', [
           { duty:'Apply agricultural chemicals and fertilizers', title:'Pesticide Handler' }
         ]],
         ['construction', [
@@ -165,7 +165,7 @@
         ['supervision', [
           { duty:'Supervise and coordinate farm workers', title:'First-Line Supervisor' }
         ]],
-        ['bees', [
+        ['beekeeping', [
           { duty:'Maintain and manage beehives and apiaries', title:'Beekeeper' }
         ]]
       ]),
