@@ -122,11 +122,11 @@
     const state = {
       flow: 'categories', // 'categories' | 'duties' | 'summary'
       categories: [
+        { key:'farmer', label:'General Farming', icon:'🌾' },
         { key:'equipment', label:'Equipment Operation', icon:'🚜' },
-        { key:'livestock', label:'Livestock', icon:'🐄' },
+        { key:'livestock', label:'Livestock Work', icon:'🐄' },
         { key:'maintenance', label:'Repair & Maintenance', icon:'🛠️' },
-        { key:'farmer', label:'Crop Work', icon:'🌾' },
-        { key:'trucking', label:'Heavy Trucking', icon:'🚚' },
+        { key:'trucking', label:'Trucking', icon:'🚚' },
         { key:'chemical', label:'Chemical Application', icon:'🧪' },
         { key:'construction', label:'Construction', icon:'👷' },
         { key:'supervisor', label:'Supervision', icon:'🧑‍💼' },
@@ -191,9 +191,8 @@
     const debounce = (fn, wait=300)=>{ let t; const d=(...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; d.flush=(...a)=>{ clearTimeout(t); fn(...a); }; return d; };
 
     // --- Icon base and helper ---
-    const ICON_BASE = (()=>{
-      return new URL('./assets/icons/', location.href).href;
-    })();
+    const ICON_BASE = 'https://AlexTarian.github.io/job-description-builder-widget/assets/icons/';
+
     
     function iconUrlFor(catKey){
       return ICON_BASE.replace(/\/+$/,'/') + encodeURIComponent(catKey) + '.svg';
@@ -418,7 +417,6 @@
               <button class="btn x" type="button" aria-label="Remove duty">×</button>
             </div>
           `;
-          tile.onclick = ()=>{ toggleDuty(it.cat, it); renderSummary(); };
           tile.querySelector('.star').onclick = (e)=>{ e.stopPropagation(); togglePrimary(it.cat, it); renderSummary(); };
           tile.querySelector('.btn.x').onclick = (e)=>{
             e.stopPropagation();
