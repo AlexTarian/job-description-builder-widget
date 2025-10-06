@@ -150,40 +150,7 @@
       selectedCategories: new Set(['farmwork']),
       categoryOrder: [],
       currentIndex: 0,
-      dutiesByCategory: new Map([
-        ['equipment', [
-          { duty:'Operate self-propelled machinery', title:'Agricultural Equipment Operator' },
-          { duty:'Operate sprayers and apply chemicals/fertilizers', title:'Agricultural Equipment Operator' },
-          { duty:'Maintain and repair farm equipment', title:'Agricultural Equipment Operator' }
-        ]],
-        ['livestock', [
-          { duty:'Feed and care for livestock', title:'Livestock Farmworker' },
-          { duty:'Assist with animal health and breeding', title:'Livestock Farmworker' }
-        ]],
-        ['maintenance', [
-          { duty:'Install and repair fences and irrigation', title:'General Farmworker' },
-          { duty:'Maintain and repair farm equipment', title:'General Farmworker' }
-        ]],
-        ['farmwork', [
-          { duty:'Plant and cultivate crops', title:'General Farmworker' },
-          { duty:'Harvest crops', title:'Graders and Sorters' }
-        ]],
-        ['trucking', [
-          { duty:'Operate heavy trucks for on-farm transport', title:'Heavy Truck Driver' }
-        ]],
-        ['chemical', [
-          { duty:'Apply agricultural chemicals and fertilizers', title:'Pesticide Handler' }
-        ]],
-        ['construction', [
-          { duty:'Assist with agricultural construction projects', title:'Construction Laborer' }
-        ]],
-        ['supervision', [
-          { duty:'Supervise and coordinate farm workers', title:'First-Line Supervisor' }
-        ]],
-        ['beekeeping', [
-          { duty:'Maintain and manage beehives and apiaries', title:'Beekeeper' }
-        ]]
-      ]),
+      dutiesByCategory: new Map(),
       selections: new Map(), // Map<CategoryKey, Map<DutyKey, {duty,title,primary:boolean}>>
     };
   
@@ -514,7 +481,26 @@
     }
   
     // Init
-    function init(){ renderCategories(); el.preview.value = renderPreviewText(); }
+    async function init() {
+      try {
+        const resp = await fetch('https://AlexTarian.github.io/job-description-builder-widget/assets/data/duties.json');
+        const data = await resp.json();
+    
+        // Convert object to Map for compatibility with existing code
+        for (const [key, arr] of Object.entries(data)) {
+          state.dutiesByCategory.set(key, arr);
+        }
+    
+        renderCategories();
+        el.preview.value = renderPreviewText();
+        console.log('Duties loaded:', state.dutiesByCategory);
+      } catch (err) {
+        console.error('Error loading duties.json:', err);
+        setStatus('⚠️ Could not load duties list. Please refresh.');
+        renderCategories();
+      }
+    }
+
     JFCustomWidget.subscribe('ready', init);
   })();
   </script>
