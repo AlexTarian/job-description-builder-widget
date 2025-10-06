@@ -89,7 +89,7 @@
     <div class="wiz-head">
       <div>
         <div id="wizTitle" class="wiz-title">Step 1: Choose applicable categories</div>
-        <div id="wizSub" class="wiz-sub">Select one or more categories to include</div>
+        <div id="wizSub" class="wiz-sub">Select all the categories related to the tasks workers will perform.</div>
       </div>
       <div id="stepBadge" class="small">Step <span id="stepNum">1</span>/<span id="stepTotal">3</span></div>
     </div>
@@ -345,6 +345,8 @@
       el.wizTitle.textContent = 'Step 1: Choose applicable categories';
       el.wizSub.textContent = 'Select one or more categories to include';
       el.backBtn.disabled = true;
+      el.nextBtn.textContent = 'Next';
+      el.nextBtn.disabled = false;
   
       const grid = document.createElement('div'); grid.className='grid';
       state.categories.forEach(cat=>{
@@ -382,8 +384,11 @@
       const items = (state.dutiesByCategory.get(cat) || []).slice();
   
       el.wizTitle.textContent = `Select duties: ${catMeta?.label||cat}`;
-      el.wizSub.textContent = 'Tap tiles to select/deselect; tap ★ to mark primary';
+      el.wizSub.textContent = 'Tap tiles to select/deselect applicable job duties. Tap ★ to mark duties as primary tasks.';
       el.backBtn.disabled = false;
+      el.nextBtn.textContent = 'Next';
+      el.nextBtn.disabled = false;
+
   
       const list = document.createElement('div'); list.className='list';
       const selMap = ensureCatMap(cat);
