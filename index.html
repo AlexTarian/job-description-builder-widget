@@ -283,6 +283,7 @@
       state.flow = 'summary';
       renderSummary();
       setStatus('');
+      try { JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
     }
   
     function buildPayload(){
@@ -487,7 +488,7 @@
     }
   
     // Init
-    function init(){ renderCategories(); el.preview.value = buildParagraph(); }
+    function init(){ renderCategories(); el.preview.value = renderPreviewText(); }
     JFCustomWidget.subscribe('ready', init);
   })();
   </script>
