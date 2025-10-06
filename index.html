@@ -85,8 +85,6 @@
 <body>
 <div class="wrap">
   <h1>Job Description Builder</h1>
-  <div class="small">Flow: Pick Categories → Select Duties (tap to select, ★ to mark primary) → Final Summary (confirm primaries) → Save</div>
-
   <div id="wizard" class="wizard" role="region" aria-label="Job duties wizard">
     <div class="wiz-head">
       <div>
@@ -112,11 +110,11 @@
   <div class="section" style="margin-top:12px;">
     <label for="preview" class="small">Job description preview</label>
     <textarea id="preview" readonly></textarea>
+    <div class="section small" id="status"></div>
     <button id="editWizardBtn" class="btn ghost" type="button" style="margin-top:8px; display:none;">
       Edit with wizard
     </button>
   </div>
-  <div class="section small" id="status"></div>
 </div>
 <script>
   (function(){
