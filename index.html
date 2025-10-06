@@ -116,9 +116,6 @@
       Edit with wizard
     </button>
   </div>
-  <div>
-    <button id="editWizardBtn" class="btn ghost" type="button" style="margin-top:8px;">Edit with wizard</button>
-  </div>
   <div class="section small" id="status"></div>
 </div>
 <script>
@@ -192,6 +189,10 @@
       editWizardBtn: document.getElementById('editWizardBtn'),
     };
 
+    el.preview.addEventListener('input', () => {
+      if (state.flow === 'done') autosend();
+    });
+
     if (el.editWizardBtn) {
       el.editWizardBtn.addEventListener('click', exitDoneMode);
     }
@@ -262,9 +263,6 @@
       el.preview.value = renderPreviewText();
       el.preview.focus();
       el.preview.setSelectionRange(el.preview.value.length, el.preview.value.length);
-      el.preview.addEventListener('input', () => {
-        if (state.flow === 'done') autosend();
-      });
     
       // Show the “Edit with wizard” button
       if (el.editWizardBtn) el.editWizardBtn.style.display = '';
@@ -279,6 +277,8 @@
       // Show wizard again at the summary step (so they can tweak primaries, etc.)
       document.getElementById('wizard').style.display = '';
       el.preview.setAttribute('readonly', 'readonly');
+
+      if (el.editWizardBtn) el.editWizardBtn.style.display = 'none';
     
       state.flow = 'summary';
       renderSummary();
@@ -354,11 +354,9 @@
         const sub = selected ? 'Selected' : 'Tap to select';
         tile.innerHTML = `
           <div class="icon">
-            <img alt="" src="${cat.iconUrl || iconUrlFor(cat.key)}"
-                 onerror="
-                   // fallback: replace the broken <img> with the emoji
-                   this.outerHTML = '<span>${(cat.icon || '•').replace(/'/g, "\\'")}</span>';
-                 ">
+            <img alt="" loading="lazy" decoding="async"
+             src="${cat.iconUrl || iconUrlFor(cat.key)}"
+             onerror="this.outerHTML='<span>${(cat.icon || '•').replace(/'/g, '\\\'')}</span>'">
           </div>
           <div class="txt">
             <div class="title">${cat.label}</div>
