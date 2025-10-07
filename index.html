@@ -154,6 +154,8 @@
       dutiesByCategory: new Map(),
       selections: new Map(),
     };
+
+    state.lastSummary = { section: null, key: null };
   
     // ===== DOM =====
     const el = {
@@ -442,20 +444,40 @@
       const counts = countSelected();
       el.wizSub.innerHTML = `Primary duties: <b>${counts.prim}</b> • Total selected: <b>${counts.n}</b>`;
       el.backBtn.disabled = false;
-  
+      el.nextBtn.textContent = 'Confirm & Save';
+      el.nextBtn.disabled = false;
+    
+      // 1) Read pre-render scroll positions (if present)
+      const oldPrimaryList = el.stage.querySelector('#sum-primary');
+      const oldOtherList   = el.stage.querySelector('#sum-other');
+      const prevScroll = {
+        primary: oldPrimaryList ? oldPrimaryList.scrollTop : 0,
+        other:   oldOtherList   ? oldOtherList.scrollTop   : 0
+      };
+    
       const primary=[], other=[];
       for (const [cat, m] of state.selections.entries()){
         for (const v of m.values()){ (v.primary?primary:other).push({ ...v, cat }); }
       }
-  
+    
       const wrap = document.createElement('div');
-  
-      const section = (title, arr)=>{
+    
+      const section = (title, arr, sectionKey)=>{
         const box = document.createElement('div');
-        const h = document.createElement('div'); h.className='row'; h.innerHTML = `<div class="small"><b>${title}</b></div>`; box.appendChild(h);
-        const list = document.createElement('div'); list.className='list summary-scroll';
+        const h = document.createElement('div');
+        h.className='row';
+        h.innerHTML = `<div class="small"><b>${title}</b></div>`;
+        box.appendChild(h);
+    
+        const list = document.createElement('div');
+        list.className='list summary-scroll';
+        list.id = sectionKey === 'primary' ? 'sum-primary' : 'sum-other';
+    
         arr.forEach(it=>{
-          const tile = document.createElement('div'); tile.className = 'tile ' + (it.primary?'primary':'secondary');
+          const k = keyFrom(it); // `${duty}\u0001${title}`
+          const tile = document.createElement('div');
+          tile.className = 'tile ' + (it.primary?'primary':'secondary');
+          tile.dataset.key = k;
           const starCls = it.primary ? 'star active' : 'star secondary';
           const subTxt = it.primary ? 'Primary' : 'Secondary';
           tile.innerHTML = `
@@ -469,32 +491,62 @@
               <button class="btn x" type="button" aria-label="Remove duty">×</button>
             </div>
           `;
-          tile.querySelector('.star').onclick = (e)=>{ e.stopPropagation(); togglePrimary(it.cat, it); renderSummary(); };
+    
+          // star toggle
+          tile.querySelector('.star').onclick = (e)=>{
+            e.stopPropagation();
+            state.lastSummary = { section: sectionKey, key: k };   // remember
+            togglePrimary(it.cat, it);
+            renderSummary();
+          };
+    
+          // remove with confirm
           tile.querySelector('.btn.x').onclick = (e)=>{
             e.stopPropagation();
             if (confirm('Remove this duty from the job?')) {
-              // remove selection
               const m = ensureCatMap(it.cat);
-              m.delete(`${it.duty}\u0001${it.title||''}`);
+              m.delete(k);
+              state.lastSummary = { section: sectionKey, key: null }; // no specific focus target
               syncOutput();
               renderSummary();
             }
           };
+    
           list.appendChild(tile);
         });
-        box.appendChild(list); return box;
+    
+        box.appendChild(list);
+        return box;
       };
-  
-      if(primary.length){ wrap.appendChild(section('Primary duties', primary)); }
-      if(other.length){ wrap.appendChild(section('Other selected duties', other)); }
-  
-      el.stage.innerHTML=''; el.stage.appendChild(wrap);
-  
-      el.backBtn.onclick = ()=>{ if(state.categoryOrder.length>0){ state.currentIndex = state.categoryOrder.length-1; renderDuties(); } else { renderCategories(); } };
-      el.nextBtn.textContent = 'Confirm & Save';
-      el.nextBtn.onclick = () => { enterDoneMode(); };
-  
-      setStepMeta(); resize();
+    
+      if(primary.length){ wrap.appendChild(section('Primary duties', primary, 'primary')); }
+      if(other.length){ wrap.appendChild(section('Other selected duties', other, 'other')); }
+    
+      el.stage.innerHTML=''; 
+      el.stage.appendChild(wrap);
+    
+      el.backBtn.onclick = ()=>{ 
+        if(state.categoryOrder.length>0){ state.currentIndex = state.categoryOrder.length-1; renderDuties(); } 
+        else { renderCategories(); } 
+      };
+      el.nextBtn.onclick = ()=> { enterDoneMode(); };
+    
+      setStepMeta(); 
+      resize();
+    
+      // 3) Restore scroll + focus
+      requestAnimationFrame(()=>{
+        const newPrimary = el.stage.querySelector('#sum-primary');
+        const newOther   = el.stage.querySelector('#sum-other');
+        if (newPrimary) newPrimary.scrollTop = prevScroll.primary;
+        if (newOther)   newOther.scrollTop   = prevScroll.other;
+    
+        if (state.lastSummary.section && state.lastSummary.key){
+          const listId = state.lastSummary.section === 'primary' ? '#sum-primary' : '#sum-other';
+          const target = el.stage.querySelector(`${listId} [data-key="${CSS.escape(state.lastSummary.key)}"]`);
+          if (target) target.focus({ preventScroll: true });
+        }
+      });
     }
   
     function groupByCategory(list){
