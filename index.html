@@ -414,8 +414,7 @@
         const k = keyFrom(it);
         const selected = selMap.has(k);
         const v = selected ? selMap.get(k) : { ...it, primary:false };
-        const k = keyFrom(it);
-  
+        
         const tile = document.createElement('div');
         tile.className = 'tile' + (selected ? (v.primary ? ' primary' : ' secondary') : '');
         tile.tabIndex=0;
