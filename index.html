@@ -150,8 +150,9 @@
       selectedCategories: new Set(['farmwork']),
       categoryOrder: [],
       currentIndex: 0,
+      lastKey: null,
       dutiesByCategory: new Map(),
-      selections: new Map(), // Map<CategoryKey, Map<DutyKey, {duty,title,primary:boolean}>>
+      selections: new Map(),
     };
 
     (async function(){
@@ -396,6 +397,8 @@
       const cat = currentCatKey();
       const catMeta = state.categories.find(c=>c.key===cat);
       const items = (state.dutiesByCategory.get(cat) || []).slice();
+      const oldList = el.stage.querySelector('.list');
+      const prevScroll = oldList ? oldList.scrollTop : 0;
   
       el.wizTitle.textContent = `Select duties: ${catMeta?.label||cat}`;
       el.wizSub.textContent = 'Tap tiles to select/deselect applicable job duties. Tap ★ to mark duties as primary tasks.';
@@ -411,10 +414,12 @@
         const k = keyFrom(it);
         const selected = selMap.has(k);
         const v = selected ? selMap.get(k) : { ...it, primary:false };
+        const k = keyFrom(it);
   
         const tile = document.createElement('div');
         tile.className = 'tile' + (selected ? (v.primary ? ' primary' : ' secondary') : '');
         tile.tabIndex=0;
+        tile.dataset.key = k;
         const starCls = selected ? (v.primary ? 'star active' : 'star secondary') : 'star gray';
         const subTxt = selected ? (v.primary ? 'Primary' : 'Secondary') : 'Tap to Select';
   
@@ -423,8 +428,8 @@
           <button class="${starCls}" type="button" aria-pressed="${v.primary}">★</button>
           <div class="txt"><div class="title">${it.duty}</div>${subTxt?`<div class="sub">${subTxt}</div>`:''}</div>`;
   
-        const toggle = ()=>{ toggleDuty(cat, it); renderDuties(); };
-        const toggleStar = (e)=>{ e.stopPropagation(); togglePrimary(cat, it); renderDuties(); };
+        const toggle = () => { state.lastKey = k; toggleDuty(cat, it); renderDuties(); };
+        const toggleStar = (e) => { e.stopPropagation(); state.lastKey = k; togglePrimary(cat, it); renderDuties(); };
   
         tile.onclick = toggle; tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
         tile.querySelector('.star').onclick = toggleStar;
@@ -432,7 +437,17 @@
         list.appendChild(tile);
       });
   
-      el.stage.innerHTML=''; el.stage.appendChild(list);
+      el.stage.innerHTML = '';
+      el.stage.appendChild(list);
+      
+      // restore scroll and focus on the same item (if still present)
+      requestAnimationFrame(() => {
+        list.scrollTop = prevScroll;
+        if (state.lastKey) {
+          const node = list.querySelector(`[data-key="${CSS.escape(state.lastKey)}"]`);
+          if (node) node.focus({ preventScroll: true });
+        }
+      });
   
       el.backBtn.onclick = ()=>{
         if(state.currentIndex===0){ renderCategories(); }
