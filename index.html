@@ -150,12 +150,12 @@
       selectedCategories: new Set(),
       categoryOrder: [],
       currentIndex: 0,
-      state.prevCategoryKey = null;
       lastKey: null,
       dutiesByCategory: new Map(),
       selections: new Map(),
     };
-
+    
+    state.prevCategoryKey = null;
     state.lastSummary = { section: null, key: null };
   
     // ===== DOM =====
