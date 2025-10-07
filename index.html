@@ -497,25 +497,69 @@
       setStepMeta(); resize();
     }
   
-    // Init
-    async function init() {
-      try {
-        const resp = await fetch('https://AlexTarian.github.io/job-description-builder-widget/assets/duties/duties.json');
-        const data = await resp.json();
-    
-        // Convert object to Map for compatibility with existing code
-        for (const [key, arr] of Object.entries(data)) {
-          state.dutiesByCategory.set(key, arr);
-        }
-    
-        renderCategories();
-        el.preview.value = renderPreviewText();
-        console.log('Duties loaded:', state.dutiesByCategory);
-      } catch (err) {
-        console.error('Error loading duties.json:', err);
-        setStatus('⚠️ Could not load duties list. Please refresh.');
-        renderCategories();
+    function groupByCategory(list){
+      const byCat = new Map();
+      for (const row of list){
+        const cat = String(row.category || 'farmwork');
+        const duty = String(row.duty || '').trim();
+        const title = String(row.title || 'Unclassified').trim();
+        if (!duty) continue;
+        if (!byCat.has(cat)) byCat.set(cat, []);
+        byCat.get(cat).push({ duty, title });
       }
+      return byCat;
+    }
+    
+    async function fetchJson(url){
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+      return res.json();
+    }
+    
+    async function init(){
+      const relUrl = new URL('./assets/duties/duties.json', location.href).href;
+      const absUrl = 'https://AlexTarian.github.io/job-description-builder-widget/assets/duties/duties.json';
+    
+      async function load(url){
+        const data = await fetchJson(url);
+        // Support both shapes:
+        if (Array.isArray(data)) {
+          return groupByCategory(data); // [{duty,title,category}, ...]
+        } else {
+          // { categoryKey: [{duty,title}, ...] }
+          const byCat = new Map();
+          for (const [k, arr] of Object.entries(data)){
+            byCat.set(
+              k,
+              (Array.isArray(arr) ? arr : []).map(r => ({
+                duty: String(r.duty || '').trim(),
+                title: String(r.title || 'Unclassified').trim()
+              })).filter(r => r.duty)
+            );
+          }
+          return byCat;
+        }
+      }
+    
+      try {
+        state.dutiesByCategory = await load(relUrl);
+      } catch (e1){
+        console.warn('Relative duties load failed, trying GitHub...', e1);
+        try {
+          state.dutiesByCategory = await load(absUrl);
+        } catch (e2){
+          console.error('duties.json load failed', e1, e2);
+          setStatus('⚠️ Could not load duties list. Please check the file path and format.');
+          // Still render categories UI so the page isn’t blank
+          renderCategories();
+          return;
+        }
+      }
+    
+      // Success path
+      renderCategories();
+      el.preview.value = renderPreviewText();
+      setStatus('');
     }
 
     JFCustomWidget.subscribe('ready', init);
