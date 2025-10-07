@@ -154,30 +154,6 @@
       dutiesByCategory: new Map(),
       selections: new Map(),
     };
-
-    (async function(){
-      const DATA_URL = new URL('./assets/duties/duties.json', location.href).href;
-    
-      async function loadDuties() {
-        const res = await fetch(DATA_URL, { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to load duties.json');
-        const list = await res.json();
-        // Group by category into Map<string, Array<{duty,title}>>
-        const byCat = new Map();
-        for (const row of list) {
-          const cat = String(row.category || 'farmwork');
-          if (!byCat.has(cat)) byCat.set(cat, []);
-          byCat.get(cat).push({ duty: row.duty, title: row.title });
-        }
-        return byCat;
-      }
-    
-      // After defining `state` but before first render:
-      state.dutiesByCategory = await loadDuties();
-          
-      // Continue with your normal init/render:
-      renderCategories();
-    })();
   
     // ===== DOM =====
     const el = {
@@ -410,32 +386,35 @@
       const list = document.createElement('div'); list.className='list';
       const selMap = ensureCatMap(cat);
   
-      items.forEach(it=>{
+      items.forEach(it => {
         const k = keyFrom(it);
         const selected = selMap.has(k);
         const v = selected ? selMap.get(k) : { ...it, primary:false };
-        
+      
         const tile = document.createElement('div');
         tile.className = 'tile' + (selected ? (v.primary ? ' primary' : ' secondary') : '');
-        tile.tabIndex=0;
+        tile.tabIndex = 0;
         tile.dataset.key = k;
+      
         const starCls = selected ? (v.primary ? 'star active' : 'star secondary') : 'star gray';
         const subTxt = selected ? (v.primary ? 'Primary' : 'Secondary') : 'Tap to Select';
-  
+      
         tile.innerHTML = `
           <i class="accent"></i>
           <button class="${starCls}" type="button" aria-pressed="${v.primary}">★</button>
-          <div class="txt"><div class="title">${it.duty}</div>${subTxt?`<div class="sub">${subTxt}</div>`:''}</div>`;
-  
+          <div class="txt"><div class="title">${it.duty}</div>${subTxt?`<div class="sub">${subTxt}</div>`:''}</div>
+        `;
+      
         const toggle = () => { state.lastKey = k; toggleDuty(cat, it); renderDuties(); };
         const toggleStar = (e) => { e.stopPropagation(); state.lastKey = k; togglePrimary(cat, it); renderDuties(); };
-  
-        tile.onclick = toggle; tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
+      
+        tile.onclick = toggle;
+        tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
         tile.querySelector('.star').onclick = toggleStar;
-  
+      
         list.appendChild(tile);
       });
-  
+
       el.stage.innerHTML = '';
       el.stage.appendChild(list);
       
