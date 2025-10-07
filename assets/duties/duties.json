@@ -60,7 +60,82 @@
     "category": "beekeeping"
   },
   {
+    "duty": "clean or service machinery to ensure operating efficiency, using water, gasoline, lubricants, or hand tools.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "connect hoses and nozzles selected according to terrain, distribution pattern requirements, types of infestations, and velocities.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "cover areas to specified depths with pesticides, applying knowledge of weather conditions, droplet sizes, elevation-to-distance ratios, and obstructions.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "establish driving routes for pesticide applications.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "fill sprayer tanks with water and chemicals, according to formulas.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "identify lawn or plant diseases to determine the appropriate course of treatment.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "lift, push, and swing nozzles, hoses, and tubes to direct spray over designated areas.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "mix pesticides, herbicides, or fungicides for application to trees, shrubs, lawns, or botanical crops.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "plant grass with seed spreaders, and operate straw blowers to cover seeded areas with mixtures of asphalt and straw.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "provide driving instructions to truck drivers to ensure complete coverage of designated areas, using hand and horn signals.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "record information about pesticide applications, such as the type used and amount applied.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "start motors and engage machinery, such as sprayer agitators or pumps or portable spray equipment.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "use new technology and equipment, such as drones or gps systems, to apply pesticides more accurately and efficiently.",
+    "title": "Pesticide Handlers, Sprayers, and Applicators",
+    "category": "chemical"
+  },
+  {
+    "duty": "apply caulking compounds by hand or caulking guns to protect against entry of water or air.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
     "duty": "build agricultural structures",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "clean or prepare construction sites to eliminate possible hazards.",
     "title": "Construction Laborers",
     "category": "construction"
   },
@@ -75,14 +150,249 @@
     "category": "construction"
   },
   {
+    "duty": "control traffic passing near, in, or around work zones.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "dig ditches or trenches, backfill excavations, or compact and level earth to grade specifications, using picks, shovels, pneumatic tampers, or rakes.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "erect or dismantle scaffolding, shoring, braces, traffic barricades, ramps, or other temporary structures.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "grind, scrape, sand, or polish surfaces, such as concrete, marble, terrazzo, or wood flooring, using abrasive tools or machines.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "install sewer, water, or storm drain pipes, using pipe-laying machinery or laser guidance equipment.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "load, unload, or identify building materials, machinery, or tools, distributing them to the appropriate locations, according to project plans or specifications.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "measure, mark, or record openings or distances to layout areas where construction work will be performed.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "mix ingredients to create compounds for covering or cleaning surfaces.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "mix, pour, or spread concrete, using portable cement mixers.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "mop, brush, or spread paints, cleaning solutions, or other compounds over surfaces to clean them or to provide protection.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "operate jackhammers or drills to break up concrete or pavement.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "operate or maintain air monitoring or other sampling devices in confined or hazardous environments.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "perform site activities required of green certified construction practices, such as implementing waste management procedures, identifying materials for reuse, or installing erosion or sedimentation control mechanisms.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "place, consolidate, or protect case-in-place concrete or masonry structures.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "position or dismantle forms for pouring concrete, using saws, hammers, nails, or bolts.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "position, join, align, or seal structural components, such as concrete wall sections or pipes.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "provide assistance to craft workers, such as carpenters, plasterers, or masons.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "raze buildings or salvage useful materials.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "read plans, instructions, or specifications to determine work activities.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "signal equipment operators to facilitate alignment, movement, or adjustment of machinery, equipment, or materials.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "smooth or finish freshly poured cement or concrete, using floats, trowels, screeds, or powered cement finishing tools.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "spray materials, such as water, sand, steam, vinyl, paint, or stucco, through hoses to clean, coat, or seal surfaces.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "tend machines that pump concrete, grout, cement, sand, plaster, or stucco through spray guns for application to ceilings or walls.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "tend pumps, compressors, or generators to provide power for tools, machinery, or equipment or to heat or move materials, such as asphalt.",
+    "title": "Construction Laborers",
+    "category": "construction"
+  },
+  {
+    "duty": "check aircraft prior to flights to ensure that the engines, controls, instruments, and other systems are functioning properly.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "check baggage or cargo to ensure that it has been loaded correctly.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "choose routes, altitudes, and speeds that will provide the fastest, safest, and smoothest flights.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "co-pilot aircraft or perform captain's duties, as required.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "conduct in-flight tests and evaluations at specified altitudes and in all types of weather to determine the receptivity and other characteristics of equipment and systems.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "consider airport altitudes, outside temperatures, plane weights, and wind speeds and directions to calculate the speed needed to become airborne.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "contact control towers for takeoff clearances, arrival instructions, and other information, using radio equipment.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "coordinate flight activities with ground crews and air traffic control, and inform crew members of flight and test procedures.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "file instrument flight plans with air traffic control so that flights can be coordinated with other air traffic.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "fly with other pilots or pilot-license applicants to evaluate their proficiency.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "instruct other pilots and student pilots in aircraft operations.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "monitor engine operation, fuel consumption, and functioning of aircraft systems during flights.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "obtain and review data such as load weights, fuel supplies, weather conditions, and flight schedules to determine flight plans and identify needed changes.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "operate large scale uncrewed aerial vehicles (uavs) or drones for various commercial purposes, such as aerial photography, surveying land and structures, or monitoring wildlife.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "order changes in fuel supplies, loads, routes, or schedules to ensure safety of flights.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "plan and formulate flight activities and test schedules and prepare flight evaluation reports.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "plan flights according to government and company regulations, using aeronautical charts and navigation instruments.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "request changes in altitudes or routes as circumstances dictate.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "rescue and evacuate injured persons.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "start engines, operate controls, and pilot airplanes to transport passengers, mail, or freight according to flight plans, regulations, and procedures.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "supervise other crew members.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "teach company regulations and procedures to other pilots.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "use instrumentation to pilot aircraft when visibility is poor.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
+    "duty": "write specified information in flight records, such as flight times, altitudes flown, and fuel consumption.",
+    "title": "Commercial Pilots",
+    "category": "crop dusting"
+  },
+  {
     "duty": "adjust farm machinery",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
-  },
-  {
-    "duty": "adjust, repair, and service farm machinery and notify supervisors when machinery malfunctions",
-    "title": "Agricultural Equipment Operators",
-    "category": "maintenance"
   },
   {
     "duty": "apply fertilizer/manure",
@@ -91,11 +401,6 @@
   },
   {
     "duty": "attach farm implements such as plows, discs, sprayers, or harvesters to tractors, using bolts and hand tools",
-    "title": "Agricultural Equipment Operators",
-    "category": "equipment"
-  },
-  {
-    "duty": "attach/detach implements",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
   },
@@ -111,11 +416,6 @@
   },
   {
     "duty": "drive farm vehicle",
-    "title": "Agricultural Equipment Operators",
-    "category": "equipment"
-  },
-  {
-    "duty": "drive farm vehicle to obtain supplies",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
   },
@@ -195,11 +495,6 @@
     "category": "equipment"
   },
   {
-    "duty": "maintain equipment",
-    "title": "Agricultural Equipment Operators",
-    "category": "maintenance"
-  },
-  {
     "duty": "manipulate controls to set, activate, and adjust mechanisms on machinery",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
@@ -235,7 +530,7 @@
     "category": "equipment"
   },
   {
-    "duty": "operate large farm equipment",
+    "duty": "operate large/specialized farm equipment",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
   },
@@ -250,27 +545,12 @@
     "category": "equipment"
   },
   {
-    "duty": "operate specialized equipment",
-    "title": "Agricultural Equipment Operators",
-    "category": "equipment"
-  },
-  {
     "duty": "operate towed machines such as seed drills or manure spreaders to plant, fertilize, dust, and spray crops",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
   },
   {
-    "duty": "operate tractors and other equipment to plant, cultivate, and harvest crops",
-    "title": "Agricultural Equipment Operators",
-    "category": "equipment"
-  },
-  {
     "duty": "operate tractors, tractor-drawn machinery, and self-propelled machinery to plow, harrow and fertilize soil, or to plant, cultivate, spray and harvest crops",
-    "title": "Agricultural Equipment Operators",
-    "category": "equipment"
-  },
-  {
-    "duty": "operating large farm equipment",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
   },
@@ -291,31 +571,6 @@
   },
   {
     "duty": "prepare farm machinery",
-    "title": "Agricultural Equipment Operators",
-    "category": "equipment"
-  },
-  {
-    "duty": "repair and maintain farm vehicles, implements, and mechanical equipment",
-    "title": "Agricultural Equipment Operators",
-    "category": "maintenance"
-  },
-  {
-    "duty": "repair equipment",
-    "title": "Agricultural Equipment Operators",
-    "category": "maintenance"
-  },
-  {
-    "duty": "service farm machinery",
-    "title": "Agricultural Equipment Operators",
-    "category": "maintenance"
-  },
-  {
-    "duty": "set up repair, maintain, and operate specialized equipment",
-    "title": "Agricultural Equipment Operators",
-    "category": "maintenance"
-  },
-  {
-    "duty": "spray crops",
     "title": "Agricultural Equipment Operators",
     "category": "equipment"
   },
@@ -350,22 +605,17 @@
     "category": "equipment"
   },
   {
-    "duty": "apply fertilizers, pesticides, herbicides, or other chemicals",
+    "duty": "apply products such as fertilizers, pesticides, herbicides, growth inhibitors, etc",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
-    "duty": "apply products such as fertilizers, pesticides, growth inhibitors, etc",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "duty": "assemble, line, and pad cartons, crates, and containers, using hand tools",
+    "title": "Packers and Packagers, Hand",
     "category": "farmwork"
   },
   {
-    "duty": "assess crop maturity",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "assess field conditions",
+    "duty": "assess field conditions and crop maturity",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
@@ -380,17 +630,17 @@
     "category": "farmwork"
   },
   {
+    "duty": "clean containers, materials, supplies, or work areas, using cleaning solutions and hand tools",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
     "duty": "clean work areas",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
     "duty": "condition soil",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "destroy pests",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
@@ -410,6 +660,16 @@
     "category": "farmwork"
   },
   {
+    "duty": "discard inferior or defective products or foreign matter, and place acceptable products in containers for further processing",
+    "title": "Graders and Sorters, Agricultural Products",
+    "category": "farmwork"
+  },
+  {
+    "duty": "examine and inspect containers, materials, or products to ensure that product quality and packing specifications are met",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
     "duty": "feel plants/crops and note coloring to detect the presence of insects or disease",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
@@ -420,17 +680,17 @@
     "category": "farmwork"
   },
   {
+    "duty": "grade and sort products according to factors such as color, species, length, width, appearance, feel, smell, and quality to ensure correct processing and usage",
+    "title": "Graders and Sorters, Agricultural Products",
+    "category": "farmwork"
+  },
+  {
     "duty": "hand pick and manually grade crops",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
-    "duty": "harvest crops by hand",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "harvest fruits and vegetables by hand",
+    "duty": "harvest commodities by hand",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
@@ -441,11 +701,6 @@
   },
   {
     "duty": "haul and spread topsoil, fertilizer, peat moss, and other materials to condition soil, using wheelbarrows or carts and shovels",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "identify plants",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
@@ -470,17 +725,7 @@
     "category": "farmwork"
   },
   {
-    "duty": "load agricultural products into trucks",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
     "duty": "load and unload materials and commodities",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "load inputs",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
@@ -490,34 +735,24 @@
     "category": "farmwork"
   },
   {
-    "duty": "maintain and repair irrigation and climate control systems",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
-  },
-  {
-    "duty": "maintain ditches",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
-  },
-  {
-    "duty": "maintain farm buildings",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
-  },
-  {
-    "duty": "maintain farm vehicles",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
-  },
-  {
-    "duty": "maintain grounds and landscaping",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
+    "duty": "load materials and products into package processing equipment",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
   },
   {
     "duty": "maintain inventory, ordering materials as required",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
+    "category": "farmwork"
+  },
+  {
+    "duty": "mark and label containers, container tags, or products, using marking tools",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
+    "duty": "measure, weigh, and count products and materials",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
   },
   {
     "duty": "mix materials",
@@ -545,6 +780,11 @@
     "category": "farmwork"
   },
   {
+    "duty": "obtain, move, and sort products, materials, containers, and orders, using hand tools",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
     "duty": "participate in the inspection, grading, sorting, storage, and post-harvest treatment of crops",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
@@ -555,23 +795,33 @@
     "category": "farmwork"
   },
   {
+    "duty": "place or pour products or materials into containers, using hand tools and equipment, or fill containers from spouts or chutes",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
+    "duty": "place products in containers according to grade and mark grades on containers",
+    "title": "Graders and Sorters, Agricultural Products",
+    "category": "farmwork"
+  },
+  {
     "duty": "plant, spray, weed, fertilize, water, and prune plants, shrubs, and trees, using gardening tools",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
-    "duty": "record information about crops, such as pesticide use, yields, or costs",
+    "duty": "record grade or identification numbers on tags or on shipping, receiving, or sales sheets",
+    "title": "Graders and Sorters, Agricultural Products",
+    "category": "farmwork"
+  },
+  {
+    "duty": "record information about plants/crops, such as growth, pesticide use, yields, or costs",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
-    "duty": "record information about plants and plant growth",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "regulate conditions",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "duty": "record product, packaging, and order information on specified forms and records",
+    "title": "Packers and Packagers, Hand",
     "category": "farmwork"
   },
   {
@@ -580,19 +830,19 @@
     "category": "farmwork"
   },
   {
+    "duty": "remove completed or defective products or materials, placing them on moving equipment, such as conveyors, or in specified areas, such as loading docks",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
     "duty": "remove weeds",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
-    "duty": "repair and maintain farm vehicles, implements, and mechanical equipment",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
-  },
-  {
-    "duty": "repair farm buildings, fences, and other structures",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "maintenance"
+    "duty": "seal containers or materials, using glues, fasteners, nails, and hand tools",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
   },
   {
     "duty": "set up and operate irrigation equipment",
@@ -620,22 +870,17 @@
     "category": "farmwork"
   },
   {
+    "duty": "transport packages to customers' vehicles",
+    "title": "Packers and Packagers, Hand",
+    "category": "farmwork"
+  },
+  {
     "duty": "transport plant materials",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
-    "duty": "trap and destroy pests",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "unload crops",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "unload materials",
+    "duty": "trap and/or destroy pests",
     "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
@@ -660,33 +905,13 @@
     "category": "farmwork"
   },
   {
-    "duty": "winnow crops such as corn or wheat",
-    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
-    "category": "farmwork"
-  },
-  {
-    "duty": "discard inferior or defective products or foreign matter, and place acceptable products in containers for further processing",
-    "title": "Graders and Sorters, Agricultural Products",
-    "category": "farmwork"
-  },
-  {
-    "duty": "grade and sort products according to factors such as color, species, length, width, appearance, feel, smell, and quality to ensure correct processing and usage",
-    "title": "Graders and Sorters, Agricultural Products",
-    "category": "farmwork"
-  },
-  {
-    "duty": "place products in containers according to grade and mark grades on containers",
-    "title": "Graders and Sorters, Agricultural Products",
-    "category": "farmwork"
-  },
-  {
-    "duty": "record grade or identification numbers on tags or on shipping, receiving, or sales sheets",
-    "title": "Graders and Sorters, Agricultural Products",
-    "category": "farmwork"
-  },
-  {
     "duty": "weigh products or estimate their weight, visually or by feel",
     "title": "Graders and Sorters, Agricultural Products",
+    "category": "farmwork"
+  },
+  {
+    "duty": "winnow crops such as corn or wheat",
+    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
     "category": "farmwork"
   },
   {
@@ -720,11 +945,6 @@
     "category": "livestock"
   },
   {
-    "duty": "examine animals to detect diseases",
-    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
-    "category": "livestock"
-  },
-  {
     "duty": "examine animals to detect illness, injury, or disease, and to check physical characteristics, such as rate of weight gain",
     "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
     "category": "livestock"
@@ -750,11 +970,6 @@
     "category": "livestock"
   },
   {
-    "duty": "inspect, maintain, and repair equipment, machinery, buildings, pens, yards, and fences",
-    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
-    "category": "maintenance"
-  },
-  {
     "duty": "maintain animal housing areas",
     "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
     "category": "livestock"
@@ -770,17 +985,7 @@
     "category": "livestock"
   },
   {
-    "duty": "mark livestock to identify ownership",
-    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
-    "category": "livestock"
-  },
-  {
     "duty": "mark livestock to identify ownership and grade, using brands, tags, paint, or tattoos",
-    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
-    "category": "livestock"
-  },
-  {
-    "duty": "mix and prepare livestock feed",
     "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
     "category": "livestock"
   },
@@ -840,12 +1045,7 @@
     "category": "livestock"
   },
   {
-    "duty": "segregate animals according to weight",
-    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
-    "category": "livestock"
-  },
-  {
-    "duty": "segregate animals according to weight, age, color, and physical condition",
+    "duty": "segregate animals according to weight, age, color, and/or physical condition",
     "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
     "category": "livestock"
   },
@@ -870,64 +1070,239 @@
     "category": "livestock"
   },
   {
-    "duty": "assemble, line, and pad cartons, crates, and containers, using hand tools",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "adjust, repair, and service farm machinery and notify supervisors when machinery malfunctions",
+    "title": "Agricultural Equipment Operators",
+    "category": "maintenance"
   },
   {
-    "duty": "clean containers, materials, supplies, or work areas, using cleaning solutions and hand tools",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "align posts, by lines or sighting, and verify vertical alignment of posts, using plumb bobs or spirit levels.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "examine and inspect containers, materials, or products to ensure that product quality and packing specifications are met",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "assemble gates, and fasten gates into position, using hand tools.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "load materials and products into package processing equipment",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "attach fence rail supports to posts, using hammers and pliers.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "mark and label containers, container tags, or products, using marking tools",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "attach rails or tension wire along bottoms of posts to form fencing frames.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "measure, weigh, and count products and materials",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "blast rock formations and rocky areas with dynamite to facilitate posthole digging.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "obtain, move, and sort products, materials, containers, and orders, using hand tools",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "calculate bills according to record of repairs made, labor time, and parts used.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
   },
   {
-    "duty": "place or pour products or materials into containers, using hand tools and equipment, or fill containers from spouts or chutes",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "clean and lubricate parts.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
   },
   {
-    "duty": "record product, packaging, and order information on specified forms and records",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "complete top fence rails of metal fences by connecting tube sections, using metal sleeves.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "remove completed or defective products or materials, placing them on moving equipment, such as conveyors, or in specified areas, such as loading docks",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "construct and repair barriers, retaining walls, trellises, and other types of fences, walls, and gates.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "seal containers or materials, using glues, fasteners, nails, and hand tools",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "dig postholes, using spades, posthole diggers, or power-driven augers.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
-    "duty": "transport packages to customers' vehicles",
-    "title": "Packers and Packagers, Hand",
-    "category": "farmwork"
+    "duty": "discuss fencing needs with customers, and estimate and quote prices.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "dismantle defective machines for repair, using hand tools.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "drive trucks to haul tools and equipment for on-site repair of large machinery.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "erect alternate panel, basket weave, and louvered fences.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "establish the location for a fence, and gather information needed to ensure that there are no electric cables or water lines in the area.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "examine and listen to equipment, read inspection reports, and confer with customers to locate and diagnose malfunctions.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "fabricate new metal parts, using drill presses, engine lathes, and other machine tools.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "insert metal tubing through rail supports.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "inspect and maintain vehicle supplies and equipment, such as gas, oil, water, tires, lights, or brakes, to ensure that vehicles are in proper working condition.",
+    "title": "Light Truck Drivers",
+    "category": "maintenance"
+  },
+  {
+    "duty": "inspect, maintain, and repair equipment, machinery, buildings, pens, yards, fences, and other structures",
+    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
+    "category": "maintenance"
+  },
+  {
+    "duty": "install and repair agricultural irrigation, plumbing, and sprinkler systems.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "lubricate, clean, or repair machinery, equipment, or tools.",
+    "title": "Construction Laborers",
+    "category": "maintenance"
+  },
+  {
+    "duty": "maintain and repair irrigation and climate control systems",
+    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "category": "maintenance"
+  },
+  {
+    "duty": "maintain ditches",
+    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "category": "maintenance"
+  },
+  {
+    "duty": "maintain farm vehicles",
+    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "category": "maintenance"
+  },
+  {
+    "duty": "maintain grounds and landscaping",
+    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "category": "maintenance"
+  },
+  {
+    "duty": "maintain, repair, and overhaul farm machinery and vehicles, such as tractors, harvesters, and irrigation systems.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "make rails for fences, by sawing lumber or by cutting metal tubing to required lengths.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "measure and lay out fence lines and mark posthole positions, following instructions, drawings, or specifications.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "mix and pour concrete around bases of posts, or tamp soil into postholes to embed posts.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "nail pointed slats to rails to construct picket fences.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "nail top and bottom rails to fence posts, or insert them in slots on posts.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "perform basic vehicle maintenance tasks, such as adding oil, fuel, or radiator fluid, performing minor repairs, or washing trucks.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "maintenance"
+  },
+  {
+    "duty": "perform emergency roadside repairs, such as changing tires or installing light bulbs, tire chains, or spark plugs.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "maintenance"
+  },
+  {
+    "duty": "perform minor aircraft maintenance and repair work, or arrange for major maintenance.",
+    "title": "Commercial Pilots",
+    "category": "maintenance"
+  },
+  {
+    "duty": "reassemble machines and equipment following repair, testing operation and making adjustments, as necessary.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "record details of repairs made and parts used.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "repair bent or torn sheet metal.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "repair or replace defective parts, using hand tools, milling and woodworking machines, lathes, welding equipment, grinders, or saws.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "service farm machinery",
+    "title": "Agricultural Equipment Operators",
+    "category": "maintenance"
+  },
+  {
+    "duty": "set metal or wooden posts in upright positions in postholes.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "set up, repair, and maintain farm vehicles, implements, and specialized/mechanical equipment",
+    "title": "Agricultural Equipment Operators",
+    "category": "maintenance"
+  },
+  {
+    "duty": "stretch wire, wire mesh, or chain link fencing between posts, and attach fencing to frames.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
+  },
+  {
+    "duty": "test and replace electrical components and wiring, using test meters, soldering equipment, and hand tools.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "tune or overhaul engines.",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "category": "maintenance"
+  },
+  {
+    "duty": "weld metal parts together, using portable gas welding equipment.",
+    "title": "Fence Erectors",
+    "category": "maintenance"
   },
   {
     "duty": "assign tasks such as feeding and treatment of animals, and cleaning and maintenance of animal quarters.",
@@ -935,7 +1310,72 @@
     "category": "supervision"
   },
   {
-    "duty": "record the numbers and types of fish or shellfish reared, harvested, released, sold, and shipped.",
+    "duty": "calculate or monitor budgets for maintenance or development of collections, grounds, or infrastructure.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "communicate with forestry personnel regarding forest harvesting or forest management plans, procedures, or schedules.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "confer with managers to determine production requirements, conditions of equipment and supplies, and work schedules.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "confer with managers to evaluate weather or soil conditions, to develop plans or procedures, or to discuss issues such as changes in fertilizers, herbicides, or cultivating techniques.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "coordinate dismantling, moving, and setting up equipment at new work sites.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "coordinate the selection and movement of logs from storage areas, according to transportation schedules or production requirements.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "direct or assist with the adjustment or repair of equipment or machinery.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "drive or operate farm machinery, such as trucks, tractors, or self-propelled harvesters, to transport workers or supplies or to cultivate or harvest fields.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "inspect buildings, fences, fields or ranges, supplies, and equipment to determine work to be performed.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "inspect crops, fields, or plant stock to determine conditions and need for cultivating, spraying, weeding, or harvesting.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "inspect facilities to determine maintenance needs.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "issue equipment, such as farm implements, machinery, ladders, or containers to workers, and collect equipment when work is complete.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "monitor operations to identify and solve problems, improve work methods, and ensure compliance with safety, company, and government regulations.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "monitor or oversee construction projects, such as horticultural buildings or irrigation systems.",
     "title": "First-Line Supervisors",
     "category": "supervision"
   },
@@ -955,12 +1395,37 @@
     "category": "supervision"
   },
   {
-    "duty": "train workers in tree felling or bucking, operation of tractors or loading machines, yarding or loading techniques, or safety regulations.",
+    "duty": "perform both supervisory and management functions, such as accounting, marketing, and personnel work.",
     "title": "First-Line Supervisors",
     "category": "supervision"
   },
   {
-    "duty": "treat animal illnesses or injuries, following experience or instructions of veterinarians.",
+    "duty": "plan work schedules according to personnel and equipment availability.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "prepare and maintain time or payroll reports, as well as details of personnel actions, such as performance evaluations, hires, promotions, or disciplinary actions.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "read inventory records, customer orders, or shipping schedules to determine required activities.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "record the numbers and types of fish or shellfish reared, harvested, released, sold, and shipped.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "requisition or purchase supplies, such as insecticides, machine parts or lubricants, or tools.",
+    "title": "First-Line Supervisors",
+    "category": "supervision"
+  },
+  {
+    "duty": "schedule work crews, equipment, or transportation for several different work locations.",
     "title": "First-Line Supervisors",
     "category": "supervision"
   },
@@ -975,42 +1440,7 @@
     "category": "supervision"
   },
   {
-    "duty": "confer with managers to evaluate weather or soil conditions, to develop plans or procedures, or to discuss issues such as changes in fertilizers, herbicides, or cultivating techniques.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "communicate with forestry personnel regarding forest harvesting or forest management plans, procedures, or schedules.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "inspect crops, fields, or plant stock to determine conditions and need for cultivating, spraying, weeding, or harvesting.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "coordinate dismantling, moving, and setting up equipment at new work sites.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "coordinate the selection and movement of logs from storage areas, according to transportation schedules or production requirements.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "schedule work crews, equipment, or transportation for several different work locations.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "drive or operate farm machinery, such as trucks, tractors, or self-propelled harvesters, to transport workers or supplies or to cultivate or harvest fields.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "perform both supervisory and management functions, such as accounting, marketing, and personnel work.",
+    "duty": "train workers in tree felling or bucking, operation of tractors or loading machines, yarding or loading techniques, or safety regulations.",
     "title": "First-Line Supervisors",
     "category": "supervision"
   },
@@ -1020,267 +1450,12 @@
     "category": "supervision"
   },
   {
-    "duty": "inspect buildings, fences, fields or ranges, supplies, and equipment to determine work to be performed.",
+    "duty": "treat animal illnesses or injuries, following experience or instructions of veterinarians.",
     "title": "First-Line Supervisors",
     "category": "supervision"
-  },
-  {
-    "duty": "read inventory records, customer orders, or shipping schedules to determine required activities.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "inspect facilities to determine maintenance needs.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "confer with managers to determine production requirements, conditions of equipment and supplies, and work schedules.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "prepare and maintain time or payroll reports, as well as details of personnel actions, such as performance evaluations, hires, promotions, or disciplinary actions.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "requisition or purchase supplies, such as insecticides, machine parts or lubricants, or tools.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "monitor or oversee construction projects, such as horticultural buildings or irrigation systems.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "issue equipment, such as farm implements, machinery, ladders, or containers to workers, and collect equipment when work is complete.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "calculate or monitor budgets for maintenance or development of collections, grounds, or infrastructure.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "direct or assist with the adjustment or repair of equipment or machinery.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "monitor operations to identify and solve problems, improve work methods, and ensure compliance with safety, company, and government regulations.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "plan work schedules according to personnel and equipment availability.",
-    "title": "First-Line Supervisors",
-    "category": "supervision"
-  },
-  {
-    "duty": "tend pumps, compressors, or generators to provide power for tools, machinery, or equipment or to heat or move materials, such as asphalt.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "lubricate, clean, or repair machinery, equipment, or tools.",
-    "title": "Construction Laborers",
-    "category": "maintenance"
-  },
-  {
-    "duty": "signal equipment operators to facilitate alignment, movement, or adjustment of machinery, equipment, or materials.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "read plans, instructions, or specifications to determine work activities.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "measure, mark, or record openings or distances to layout areas where construction work will be performed.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "clean or prepare construction sites to eliminate possible hazards.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "dig ditches or trenches, backfill excavations, or compact and level earth to grade specifications, using picks, shovels, pneumatic tampers, or rakes.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "load, unload, or identify building materials, machinery, or tools, distributing them to the appropriate locations, according to project plans or specifications.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "position, join, align, or seal structural components, such as concrete wall sections or pipes.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "perform site activities required of green certified construction practices, such as implementing waste management procedures, identifying materials for reuse, or installing erosion or sedimentation control mechanisms.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "control traffic passing near, in, or around work zones.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "install sewer, water, or storm drain pipes, using pipe-laying machinery or laser guidance equipment.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "operate or maintain air monitoring or other sampling devices in confined or hazardous environments.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "smooth or finish freshly poured cement or concrete, using floats, trowels, screeds, or powered cement finishing tools.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "erect or dismantle scaffolding, shoring, braces, traffic barricades, ramps, or other temporary structures.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "provide assistance to craft workers, such as carpenters, plasterers, or masons.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "spray materials, such as water, sand, steam, vinyl, paint, or stucco, through hoses to clean, coat, or seal surfaces.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "raze buildings or salvage useful materials.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "mop, brush, or spread paints, cleaning solutions, or other compounds over surfaces to clean them or to provide protection.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "position or dismantle forms for pouring concrete, using saws, hammers, nails, or bolts.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "grind, scrape, sand, or polish surfaces, such as concrete, marble, terrazzo, or wood flooring, using abrasive tools or machines.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "place, consolidate, or protect case-in-place concrete or masonry structures.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "mix ingredients to create compounds for covering or cleaning surfaces.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "mix, pour, or spread concrete, using portable cement mixers.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "operate jackhammers or drills to break up concrete or pavement.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "apply caulking compounds by hand or caulking guns to protect against entry of water or air.",
-    "title": "Construction Laborers",
-    "category": "construction"
-  },
-  {
-    "duty": "tend machines that pump concrete, grout, cement, sand, plaster, or stucco through spray guns for application to ceilings or walls.",
-    "title": "Construction Laborers",
-    "category": "construction"
   },
   {
     "duty": "check all load-related documentation for completeness and accuracy.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "inspect loads to ensure that cargo is secure.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "check vehicles to ensure that mechanical, safety, and emergency equipment is in good working order.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "crank trailer landing gear up or down to safely secure vehicles.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "obtain receipts or signatures for delivered goods and collect payment for services when required.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "maintain logs of working hours or of vehicle service or repair status, following applicable state and federal regulations.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "read bills of lading to determine assignment details.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "report vehicle defects, accidents, traffic violations, or damage to the vehicles.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "perform basic vehicle maintenance tasks, such as adding oil, fuel, or radiator fluid, performing minor repairs, or washing trucks.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "maintenance"
-  },
-  {
-    "duty": "couple or uncouple trailers by changing trailer jack positions, connecting or disconnecting air or electrical lines, or manipulating fifth-wheel locks.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "maneuver trucks into loading or unloading positions, following signals from loading crew and checking that vehicle and loading equipment are properly positioned.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "collect delivery instructions from appropriate sources, verifying instructions and routes.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "drive trucks with capacities greater than 13 tons, including tractor-trailer combinations, to transport and deliver products, livestock, or other materials.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "read and interpret maps to determine vehicle routes.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
@@ -1290,7 +1465,22 @@
     "category": "trucking"
   },
   {
-    "duty": "operate equipment, such as truck cab computers, cb radios, phones, or global positioning systems (gps) equipment to exchange necessary information with bases, supervisors, or other drivers.",
+    "duty": "check vehicles to ensure that mechanical, safety, and emergency equipment is in good working order.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "collect delivery instructions from appropriate sources, verifying instructions and routes.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "couple or uncouple trailers by changing trailer jack positions, connecting or disconnecting air or electrical lines, or manipulating fifth-wheel locks.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "crank trailer landing gear up or down to safely secure vehicles.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
@@ -1300,37 +1490,17 @@
     "category": "trucking"
   },
   {
-    "duty": "load or unload trucks or help others with loading or unloading, using special loading-related equipment or other equipment as necessary.",
+    "duty": "drive trucks with capacities greater than 13 tons, including tractor-trailer combinations, to transport and deliver products, livestock, or other materials.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
   {
-    "duty": "plan or adjust routes based on changing conditions, using computer equipment, global positioning systems (gps) equipment, or other navigation devices, to minimize fuel consumption and carbon emissions.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "perform emergency roadside repairs, such as changing tires or installing light bulbs, tire chains, or spark plugs.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "maintenance"
-  },
-  {
-    "duty": "remove debris from loaded trailers.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "secure cargo for transport, using ropes, blocks, chain, binders, or covers.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "duty": "drive vehicles with capacities under three tons to transport materials to and from specified destinations, such as railroad stations, plants, residences, offices, or within industrial yards.",
+    "title": "Light Truck Drivers",
     "category": "trucking"
   },
   {
     "duty": "follow appropriate safety procedures for transporting dangerous goods.",
-    "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "inventory and inspect goods to be moved to determine quantities and conditions.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
@@ -1340,12 +1510,62 @@
     "category": "trucking"
   },
   {
+    "duty": "give directions to laborers who are packing goods and moving them onto trailers.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "inspect loads to ensure that cargo is secure.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
     "duty": "install or remove special equipment, such as tire chains, grader blades, plow blades, or sanders.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
   {
-    "duty": "wrap and secure goods using pads, packing paper, containers, or straps.",
+    "duty": "inventory and inspect goods to be moved to determine quantities and conditions.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "load and unload trucks, vans, or automobiles.",
+    "title": "Light Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "load or unload trucks or help others with loading or unloading, using special loading-related equipment or other equipment as necessary.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "maintain logs of working hours or of vehicle service or repair status, following applicable state and federal regulations.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "maintain records, such as vehicle logs, records of cargo, or billing statements, in accordance with regulations.",
+    "title": "Light Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "maneuver trucks into loading or unloading positions, following signals from loading crew and checking that vehicle and loading equipment are properly positioned.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "obey traffic laws and follow established traffic and transportation procedures.",
+    "title": "Light Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "obtain receipts or signatures for delivered goods and collect payment for services when required.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "operate equipment, such as truck cab computers, cb radios, phones, or global positioning systems (gps) equipment to exchange necessary information with bases, supervisors, or other drivers.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
@@ -1355,273 +1575,8 @@
     "category": "trucking"
   },
   {
-    "duty": "give directions to laborers who are packing goods and moving them onto trailers.",
+    "duty": "plan or adjust routes based on changing conditions, using computer equipment, global positioning systems (gps) equipment, or other navigation devices, to minimize fuel consumption and carbon emissions.",
     "title": "Heavy and Tractor-Trailer Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "mix pesticides, herbicides, or fungicides for application to trees, shrubs, lawns, or botanical crops.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "fill sprayer tanks with water and chemicals, according to formulas.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "lift, push, and swing nozzles, hoses, and tubes to direct spray over designated areas.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "identify lawn or plant diseases to determine the appropriate course of treatment.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "cover areas to specified depths with pesticides, applying knowledge of weather conditions, droplet sizes, elevation-to-distance ratios, and obstructions.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "start motors and engage machinery, such as sprayer agitators or pumps or portable spray equipment.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "connect hoses and nozzles selected according to terrain, distribution pattern requirements, types of infestations, and velocities.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "clean or service machinery to ensure operating efficiency, using water, gasoline, lubricants, or hand tools.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "provide driving instructions to truck drivers to ensure complete coverage of designated areas, using hand and horn signals.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "plant grass with seed spreaders, and operate straw blowers to cover seeded areas with mixtures of asphalt and straw.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "establish driving routes for pesticide applications.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "record information about pesticide applications, such as the type used and amount applied.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "use new technology and equipment, such as drones or gps systems, to apply pesticides more accurately and efficiently.",
-    "title": "Pesticide Handlers, Sprayers, and Applicators",
-    "category": "chemical"
-  },
-  {
-    "duty": "reassemble machines and equipment following repair, testing operation and making adjustments, as necessary.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "maintain, repair, and overhaul farm machinery and vehicles, such as tractors, harvesters, and irrigation systems.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "examine and listen to equipment, read inspection reports, and confer with customers to locate and diagnose malfunctions.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "record details of repairs made and parts used.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "dismantle defective machines for repair, using hand tools.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "clean and lubricate parts.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "repair or replace defective parts, using hand tools, milling and woodworking machines, lathes, welding equipment, grinders, or saws.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "test and replace electrical components and wiring, using test meters, soldering equipment, and hand tools.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "tune or overhaul engines.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "drive trucks to haul tools and equipment for on-site repair of large machinery.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "fabricate new metal parts, using drill presses, engine lathes, and other machine tools.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "repair bent or torn sheet metal.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "calculate bills according to record of repairs made, labor time, and parts used.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "install and repair agricultural irrigation, plumbing, and sprinkler systems.",
-    "title": "Farm Equipment Mechanics and Service Technicians",
-    "category": "maintenance"
-  },
-  {
-    "duty": "establish the location for a fence, and gather information needed to ensure that there are no electric cables or water lines in the area.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "set metal or wooden posts in upright positions in postholes.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "measure and lay out fence lines and mark posthole positions, following instructions, drawings, or specifications.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "align posts, by lines or sighting, and verify vertical alignment of posts, using plumb bobs or spirit levels.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "attach rails or tension wire along bottoms of posts to form fencing frames.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "dig postholes, using spades, posthole diggers, or power-driven augers.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "attach fence rail supports to posts, using hammers and pliers.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "assemble gates, and fasten gates into position, using hand tools.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "mix and pour concrete around bases of posts, or tamp soil into postholes to embed posts.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "make rails for fences, by sawing lumber or by cutting metal tubing to required lengths.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "nail top and bottom rails to fence posts, or insert them in slots on posts.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "discuss fencing needs with customers, and estimate and quote prices.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "stretch wire, wire mesh, or chain link fencing between posts, and attach fencing to frames.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "complete top fence rails of metal fences by connecting tube sections, using metal sleeves.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "erect alternate panel, basket weave, and louvered fences.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "insert metal tubing through rail supports.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "nail pointed slats to rails to construct picket fences.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "construct and repair barriers, retaining walls, trellises, and other types of fences, walls, and gates.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "weld metal parts together, using portable gas welding equipment.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "blast rock formations and rocky areas with dynamite to facilitate posthole digging.",
-    "title": "Fence Erectors",
-    "category": "maintenance"
-  },
-  {
-    "duty": "obey traffic laws and follow established traffic and transportation procedures.",
-    "title": "Light Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "report any mechanical problems encountered with vehicles.",
-    "title": "Light Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "verify the contents of inventory loads against shipping papers.",
-    "title": "Light Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "inspect and maintain vehicle supplies and equipment, such as gas, oil, water, tires, lights, or brakes, to ensure that vehicles are in proper working condition.",
-    "title": "Light Truck Drivers",
-    "category": "maintenance"
-  },
-  {
-    "duty": "read maps and follow written or verbal geographic directions.",
-    "title": "Light Truck Drivers",
-    "category": "trucking"
-  },
-  {
-    "duty": "load and unload trucks, vans, or automobiles.",
-    "title": "Light Truck Drivers",
     "category": "trucking"
   },
   {
@@ -1630,13 +1585,43 @@
     "category": "trucking"
   },
   {
-    "duty": "maintain records, such as vehicle logs, records of cargo, or billing statements, in accordance with regulations.",
+    "duty": "read and interpret maps to determine vehicle routes.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "read bills of lading to determine assignment details.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "read maps and follow written or verbal geographic directions.",
     "title": "Light Truck Drivers",
     "category": "trucking"
   },
   {
-    "duty": "drive vehicles with capacities under three tons to transport materials to and from specified destinations, such as railroad stations, plants, residences, offices, or within industrial yards.",
+    "duty": "remove debris from loaded trailers.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "report any mechanical problems encountered with vehicles.",
     "title": "Light Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "report delays, accidents, or other traffic and transportation situations to bases or other vehicles, using telephones or mobile two-way radios.",
+    "title": "Light Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "report vehicle defects, accidents, traffic violations, or damage to the vehicles.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
+  },
+  {
+    "duty": "secure cargo for transport, using ropes, blocks, chain, binders, or covers.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
     "category": "trucking"
   },
   {
@@ -1650,133 +1635,13 @@
     "category": "trucking"
   },
   {
-    "duty": "report delays, accidents, or other traffic and transportation situations to bases or other vehicles, using telephones or mobile two-way radios.",
+    "duty": "verify the contents of inventory loads against shipping papers.",
     "title": "Light Truck Drivers",
     "category": "trucking"
   },
   {
-    "duty": "check aircraft prior to flights to ensure that the engines, controls, instruments, and other systems are functioning properly.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "co-pilot aircraft or perform captain's duties, as required.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "consider airport altitudes, outside temperatures, plane weights, and wind speeds and directions to calculate the speed needed to become airborne.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "use instrumentation to pilot aircraft when visibility is poor.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "monitor engine operation, fuel consumption, and functioning of aircraft systems during flights.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "order changes in fuel supplies, loads, routes, or schedules to ensure safety of flights.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "contact control towers for takeoff clearances, arrival instructions, and other information, using radio equipment.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "plan flights according to government and company regulations, using aeronautical charts and navigation instruments.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "start engines, operate controls, and pilot airplanes to transport passengers, mail, or freight according to flight plans, regulations, and procedures.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "check baggage or cargo to ensure that it has been loaded correctly.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "obtain and review data such as load weights, fuel supplies, weather conditions, and flight schedules to determine flight plans and identify needed changes.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "conduct in-flight tests and evaluations at specified altitudes and in all types of weather to determine the receptivity and other characteristics of equipment and systems.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "choose routes, altitudes, and speeds that will provide the fastest, safest, and smoothest flights.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "write specified information in flight records, such as flight times, altitudes flown, and fuel consumption.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "coordinate flight activities with ground crews and air traffic control, and inform crew members of flight and test procedures.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "perform minor aircraft maintenance and repair work, or arrange for major maintenance.",
-    "title": "Commercial Pilots",
-    "category": "maintenance"
-  },
-  {
-    "duty": "supervise other crew members.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "request changes in altitudes or routes as circumstances dictate.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "file instrument flight plans with air traffic control so that flights can be coordinated with other air traffic.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "rescue and evacuate injured persons.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "instruct other pilots and student pilots in aircraft operations.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "fly with other pilots or pilot-license applicants to evaluate their proficiency.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "plan and formulate flight activities and test schedules and prepare flight evaluation reports.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "teach company regulations and procedures to other pilots.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
-  },
-  {
-    "duty": "operate large scale uncrewed aerial vehicles (uavs) or drones for various commercial purposes, such as aerial photography, surveying land and structures, or monitoring wildlife.",
-    "title": "Commercial Pilots",
-    "category": "crop dusting"
+    "duty": "wrap and secure goods using pads, packing paper, containers, or straps.",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "category": "trucking"
   }
 ]
