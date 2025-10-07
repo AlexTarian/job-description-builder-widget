@@ -145,7 +145,8 @@
         { key:'chemical', label:'Chemical Application', icon:'🧪' },
         { key:'construction', label:'Construction', icon:'👷' },
         { key:'supervision', label:'Supervision', icon:'🧑‍💼' },
-        { key:'beekeeping', label:'Beekeeping', icon:'🐝' }
+        { key:'beekeeping', label:'Beekeeping', icon:'🐝' },
+        { key:'crop dusting', label:'Crop Dusting', icon:'✈️' },
       ],
       selectedCategories: new Set(),
       categoryOrder: [],
@@ -233,7 +234,7 @@
     function renderPreviewText() {
       const { primary, secondary } = buildPreviewSections();
       const primText = primary.length ? `Primary duties include: ${primary.join('; ')}.` : '';
-      const secText  = secondary.length ? `Additional duties may include: ${secondary.join('; ')}.` : '';
+      const secText  = secondary.length ? `\nAdditional duties may include: ${secondary.join('; ')}.` : '';
       const combined = [primText, secText].filter(Boolean).join(' ');
       return combined || buildParagraph(); // fallback if both empty
     }
