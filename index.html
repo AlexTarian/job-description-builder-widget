@@ -232,8 +232,7 @@
       const { primary, secondary } = buildPreviewSections();
       const primText = primary.length ? `Primary duties include: ${primary.join('; ')}.` : '';
       const secText  = secondary.length ? `\nAdditional duties may include: ${secondary.join('; ')}.` : '';
-      const combined = [primText, secText].filter(Boolean).join(' ');
-      return combined || buildParagraph(); // fallback if both empty
+      return [primText, secText].filter(Boolean).join(''); // <- no extra space before newline
     }
 
     function enterDoneMode() {
@@ -270,26 +269,61 @@
   
     function buildPayload(){
       const out = { primary:[], other:[], selected:[], description:'' };
-      for(const [cat, m] of state.selections.entries()){
-        for(const v of m.values()){
+      for (const [cat, m] of state.selections.entries()){
+        for (const v of m.values()){
           const rec = { duty:v.duty, title:v.title||'Unclassified', category:cat, primary: !!v.primary };
           out.selected.push(rec);
-          if(v.primary) out.primary.push(v.duty); else out.other.push(v.duty);
+          if (v.primary) out.primary.push(v.duty); else out.other.push(v.duty);
         }
       }
       out.description = (state.flow === 'done')
         ? String(el.preview.value || '').trim()
         : renderPreviewText();
-      return JSON.stringify(out);
+      return out; // <-- plain object (not JSON string)
     }
-  
+    
     // ===== Autosave to Jotform =====
-    const sendNow = ()=>{ try{ JFCustomWidget.sendSubmit({ value: buildPayload() }); }catch{} };
+    const sendNow = () => {
+      try {
+        JFCustomWidget.sendSubmit({
+          valid: true,
+          value: buildPayload()
+        });
+      } catch (e) {
+        console.error('sendSubmit failed', e);
+      }
+    };
+    
+    if (typeof JFCustomWidget.subscribe === 'function'){
+      JFCustomWidget.subscribe('submit', () => {
+        autosend.flush(); // make sure value is sent right as Jotform submits
+      });
+      JFCustomWidget.subscribe('populate', (msg) => {
+        const raw = msg && msg.value;
+        try{
+          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw; // <-- accept both
+          if (!data || !Array.isArray(data.selected)) return;
+          state.selections.clear();
+          data.selected.forEach(r=>{
+            const cat = r.category || 'general';
+            const m = ensureCatMap(cat);
+            const k = keyFrom(r);
+            m.set(k, { duty:r.duty, title:r.title, primary: !!r.primary });
+          });
+          renderSummary();
+        }catch(err){
+          console.warn('populate parse issue', err);
+        }
+      });
+    }
+
     const autosend = debounce(sendNow, 400);
     const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
   
     if (typeof JFCustomWidget.subscribe === 'function'){
-      JFCustomWidget.subscribe('submit', ()=> autosend.flush());
+      JFCustomWidget.subscribe('submit', ()=> {
+        autosend.flush();
+      });
       JFCustomWidget.subscribe('populate', (msg)=>{
         if(msg && msg.value){
           try{
@@ -691,7 +725,12 @@
       setStatus('');
     }
 
-    JFCustomWidget.subscribe('ready', init);
+    if (window.JFCustomWidget && typeof JFCustomWidget.subscribe === 'function') {
+      JFCustomWidget.subscribe('ready', init);
+    } else {
+      document.addEventListener('DOMContentLoaded', init);
+    }
+
   })();
   </script>
 </body>
