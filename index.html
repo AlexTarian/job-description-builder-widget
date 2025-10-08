@@ -84,14 +84,20 @@
   
     textarea{ width:100%; min-height:140px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; }
   </style>
-  <!-- Jotform Widget API shim (so it runs outside Jotform) -->
+  <!-- Jotform Widget API shim (dev-only; won't run inside Jotform) -->
   <script>
-    window.JFCustomWidget = window.JFCustomWidget || {
-      subscribe(ev, cb){ if(ev==='ready'){ document.addEventListener('DOMContentLoaded', cb);} if(ev==='submit'){ /* local noop */ } if(ev==='populate'){ /* noop */ } },
-      getWidgetSettings(cb){ cb({}); },
-      sendSubmit(obj){ console.log('sendSubmit (local)', obj); },
-      requestFrameResize(){ /* noop */ }
-    };
+    if (window.self === window.top && !window.JFCustomWidget) {
+      window.JFCustomWidget = {
+        subscribe(ev, cb){
+          if (ev === 'ready')  { document.addEventListener('DOMContentLoaded', cb); }
+          if (ev === 'submit') { /* noop in local */ }
+          if (ev === 'populate'){ /* noop */ }
+        },
+        getWidgetSettings(cb){ cb({}); },
+        sendSubmit(obj){ console.log('sendSubmit (local)', obj); },
+        requestFrameResize(){ /* noop */ }
+      };
+    }
   </script>
 </head>
 <body>
@@ -369,9 +375,10 @@ window.addEventListener('unhandledrejection', (e) => {
     
     if (typeof JFCustomWidget.subscribe === 'function'){
       JFCustomWidget.subscribe('submit', () => {
-        Debug.log('JFCustomWidget.submit fired (flushing latest value)');
-        autosend.flush();  // guarantees the latest payload is sent
+        Debug.log('JFCustomWidget.submit fired (sending value now)');
+        try { sendNow(); } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
       });
+    }
       JFCustomWidget.subscribe('populate', (msg) => {
         const raw = msg && msg.value;
         try{
@@ -393,27 +400,6 @@ window.addEventListener('unhandledrejection', (e) => {
 
     const autosend = debounce(sendNow, 400, 2000);
     const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
-  
-    if (typeof JFCustomWidget.subscribe === 'function'){
-      JFCustomWidget.subscribe('submit', ()=> {
-        autosend.flush();
-      });
-      JFCustomWidget.subscribe('populate', (msg)=>{
-        if(msg && msg.value){
-          try{
-            const data = JSON.parse(msg.value);
-            state.selections.clear();
-            (data.selected||[]).forEach(r=>{
-              const cat = r.category || 'general';
-              const m = ensureCatMap(cat);
-              const k = keyFrom(r);
-              m.set(k, { duty:r.duty, title:r.title, primary: !!r.primary });
-            });
-            renderSummary();
-          }catch{}
-        }
-      });
-    }
   
     function resize(){ try{ JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); }catch{} }
   
