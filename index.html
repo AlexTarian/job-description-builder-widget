@@ -129,6 +129,57 @@
   </div>
 </div>
 <script>
+  // --- Lightweight logger that prints to console and to the #status element ---
+const Debug = (() => {
+  let sink = null;              // element to print into (we'll attach later)
+  const buf = [];               // buffer until attached
+  const MAX = 120;              // keep last N lines in the UI
+
+  function toStr(x) {
+    try {
+      if (x === undefined) return 'undefined';
+      if (x === null) return 'null';
+      if (typeof x === 'string') return x;
+      return JSON.stringify(x);
+    } catch { return String(x); }
+  }
+
+  function line(...args) {
+    const ts = new Date().toLocaleTimeString();
+    return `[${ts}] ${args.map(toStr).join(' ')}`;
+  }
+
+  function log(...args) {
+    console.log('[WIDGET]', ...args);
+    const l = line(...args);
+    if (sink) {
+      const arr = (sink.textContent ? sink.textContent.split('\n') : []).concat(l);
+      sink.textContent = arr.slice(-MAX).join('\n');
+    } else {
+      buf.push(l);
+      if (buf.length > MAX * 2) buf.shift();
+    }
+  }
+
+  function attach(el) {
+    sink = el || null;
+    if (sink && buf.length) {
+      sink.textContent = buf.slice(-MAX).join('\n');
+    }
+  }
+
+  return { log, attach };
+})();
+
+// Global error taps (great for “why is submit hanging?” moments)
+window.addEventListener('error', (e) => {
+  Debug.log('window.onerror:', e.message, e.filename, e.lineno + ':' + e.colno);
+});
+window.addEventListener('unhandledrejection', (e) => {
+  Debug.log('unhandledrejection:', toString(e.reason || e));
+  function toString(r){ try { return typeof r === 'string' ? r : JSON.stringify(r); } catch { return String(r); } }
+});
+
   (function(){
     // ===== State =====
     const state = {
@@ -170,6 +221,10 @@
       status: document.getElementById('status'),
       editWizardBtn: document.getElementById('editWizardBtn'),
     };
+
+    // hook the UI log sink
+    Debug.attach(el.status);
+    Debug.log('boot: DOM wired');
 
     el.preview.addEventListener('input', () => {
       if (state.flow === 'done') autosend();
@@ -236,7 +291,7 @@
     }
 
     function enterDoneMode() {
-      // Hide wizard UI
+      Debug.log('enterDoneMode()');
       document.getElementById('wizard').style.display = 'none';
     
       // Make preview editable + fill with split text
@@ -279,7 +334,13 @@
       out.description = (state.flow === 'done')
         ? String(el.preview.value || '').trim()
         : renderPreviewText();
-      return out; // <-- plain object (not JSON string)
+      Debug.log('buildPayload snapshot:', {
+        primaryCount: out.primary.length,
+        otherCount: out.other.length,
+        selectedCount: out.selected.length,
+        descLen: out.description.length
+      });
+      return out;
     }
     
     // ===== Autosave to Jotform =====
@@ -550,6 +611,7 @@
     }
   
     function renderSummary(){
+      Debug.log('renderSummary(): totals =', countSelected());
       state.flow = 'summary';
       el.wizTitle.textContent = 'Review selected duties';
       const counts = countSelected();
@@ -680,6 +742,7 @@
     }
     
     async function init(){
+      Debug.log('init() start');
       const relUrl = new URL('./assets/duties/duties.json', location.href).href;
       const absUrl = 'https://AlexTarian.github.io/job-description-builder-widget/assets/duties/duties.json';
     
