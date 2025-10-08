@@ -235,7 +235,20 @@ window.addEventListener('unhandledrejection', (e) => {
     }
   
     const setStatus = (t)=> el.status.textContent = t || '';
-    const debounce = (fn, wait=300)=>{ let t; const d=(...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; d.flush=(...a)=>{ clearTimeout(t); fn(...a); }; return d; };
+    function debounce(fn, wait=300, maxWaitMs=null){
+      let t=null, start=null;
+      const run = (...a) => { t && clearTimeout(t); t=null; start=null; fn(...a); };
+      const d = (...a) => {
+        const now = Date.now();
+        if (start==null) start = now;
+        if (maxWaitMs!=null && now - start >= maxWaitMs) return run(...a);
+        t && clearTimeout(t);
+        t = setTimeout(() => run(...a), wait);
+      };
+      d.flush = (...a) => run(...a);
+      d.cancel = () => { t && clearTimeout(t); t=null; start=null; };
+      return d;
+    }
 
     // --- Icon base and helper ---
     const ICON_BASE = 'https://AlexTarian.github.io/job-description-builder-widget/assets/icons/';
@@ -346,12 +359,11 @@ window.addEventListener('unhandledrejection', (e) => {
     const sendNow = () => {
       try {
         const payload = buildPayload();
-        JFCustomWidget.sendSubmit({
-          valid: true,
-          value: SEND_AS_STRING ? JSON.stringify(payload) : payload
-        });
+        const value = JSON.stringify(payload);  // <-- always a string
+        JFCustomWidget.sendSubmit({ valid: true, value });
+        Debug.log('sendSubmit ok type=', typeof value, 'len=', value.length);
       } catch (e) {
-        Debug.log('sendSubmit failed', e && e.message);
+        Debug.log('sendSubmit failed', e?.message || e);
       }
     };
     
@@ -379,7 +391,7 @@ window.addEventListener('unhandledrejection', (e) => {
       });
     }
 
-    const autosend = debounce(sendNow, 400);
+    const autosend = debounce(sendNow, 400, 2000);
     const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
   
     if (typeof JFCustomWidget.subscribe === 'function'){
