@@ -135,6 +135,19 @@
   </div>
 </div>
 <script>
+  // --- JF lifecycle harness (2025 style) ----------------------------
+  let JF = null;                  // holds the real API after 'ready'
+  let pendingValue = null;        // last value we wanted to send before JF existed
+  
+  function setPending(v){ pendingValue = v; }
+  function flushIfReady(){
+    if (!JF || pendingValue == null) return;
+    try { JF.sendSubmit({ valid: true, value: pendingValue }); }
+    catch(e){ /* swallow + keep pending so we can retry */ return; }
+    pendingValue = null;
+  }
+
+  
   // --- Lightweight logger that prints to console and to the #status element ---
 const Debug = (() => {
   let sink = null;              // element to print into (we'll attach later)
@@ -185,20 +198,6 @@ window.addEventListener('unhandledrejection', (e) => {
   Debug.log('unhandledrejection:', toString(e.reason || e));
   function toString(r){ try { return typeof r === 'string' ? r : JSON.stringify(r); } catch { return String(r); } }
 });
-
-  // --- JF helpers: safe presence check + race-proof waiter ---
-  function hasJF() {
-    return typeof window.JFCustomWidget !== 'undefined' &&
-           typeof window.JFCustomWidget.subscribe === 'function';
-  }
-  function whenJF(cb) {
-    if (hasJF()) return cb(window.JFCustomWidget);
-    const id = setInterval(() => {
-      if (hasJF()) { clearInterval(id); cb(window.JFCustomWidget); }
-    }, 50);
-    setTimeout(() => clearInterval(id), 5000); // safety cap
-  }
-
 
   (function(){
     // ===== State =====
@@ -339,7 +338,7 @@ window.addEventListener('unhandledrejection', (e) => {
       state.flow = 'done';
       autosend.flush();
       setStatus('You can edit the text directly. Changes will be saved automatically.');
-      try { JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
+      try { JF && JF.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
     }
     
     function exitDoneMode() {
@@ -352,26 +351,7 @@ window.addEventListener('unhandledrejection', (e) => {
       state.flow = 'summary';
       renderSummary();
       setStatus('');
-      try { JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
-    }
-
-    // ---- Cached value + helpers (place near sendNow/buildPayload) ----
-    let pendingValue = null;
-    
-    function buildValue() {
-      const payload = buildPayload();
-      return JSON.stringify(payload);
-    }
-    
-    function flushIfReady() {
-      if (!hasJF() || pendingValue == null) return;
-      try {
-        window.JFCustomWidget.sendSubmit({ valid: true, value: pendingValue });
-        Debug.log('sendSubmit ok type= string len=', pendingValue.length);
-        pendingValue = null;
-      } catch (e) {
-        Debug.log('sendSubmit failed (flush)', e?.message || e);
-      }
+      try { JF && JF.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
     }
   
     function buildPayload(){
@@ -395,66 +375,23 @@ window.addEventListener('unhandledrejection', (e) => {
       return out;
     }
 
-    const sendNow = () => {
+    // Called by autosave or on submit
+    function sendNow(){
       try {
-        pendingValue = buildValue(); // always (re)cache latest
-        if (hasJF()) {
-          window.JFCustomWidget.sendSubmit({ valid: true, value: pendingValue });
-          Debug.log('sendSubmit ok type= string len=', pendingValue.length);
-          pendingValue = null;
-        } else {
-          Debug.log('JF not ready yet; will flush on ready (queued len=', pendingValue.length, ')');
-          whenJF(() => flushIfReady());
-        }
-      } catch (e) {
-        Debug.log('sendSubmit failed', e?.message || e);
-      }
-    };
-
-    // Wire up JF subscriptions only after the real API exists
-    whenJF((JF) => {
-      // Jotform signals the iframe is ready
-      JF.subscribe('ready', init);
-    
-      // On submit: send the freshest payload NOW (no debounce)
-      JF.subscribe('submit', () => {
-        Debug.log('JFCustomWidget.submit fired (sending value now)');
-        try { sendNow(); } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
-      });
-    
-      // On populate: accept string or object
-      JF.subscribe('populate', (msg) => {
-        const raw = msg && msg.value;
-        try {
-          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw;
-          if (!data || !Array.isArray(data.selected)) return;
-          state.selections.clear();
-          data.selected.forEach(r=>{
-            const cat = r.category || 'general';
-            const m = ensureCatMap(cat);
-            const k = keyFrom(r);
-            m.set(k, { duty:r.duty, title:r.title, primary: !!r.primary });
-          });
-          renderSummary();
-        } catch (err) {
-          console.warn('populate parse issue', err);
-        }
-      });
-    });
+        const value = JSON.stringify(buildPayload());
+        if (!JF) { setPending(value); return; }
+        JF.sendSubmit({ valid: true, value });
+      } catch(_) {}
+    }
 
     const autosend = debounce(() => {
-      // Don’t error if JF isn’t here yet—just cache and attempt a flush
-      pendingValue = buildValue();
-      if (hasJF()) {
-        flushIfReady();
-      } else {
-        whenJF(() => flushIfReady());
-      }
+      setPending(JSON.stringify(buildPayload()));
+      flushIfReady(); // will no-op until JF is set in 'ready'
     }, 400, 2000);
 
     const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
   
-    function resize(){ try{ JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); }catch{} }
+    function resize(){ try { JF && JF.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {} }
   
     // ===== Rendering =====
     function setStepMeta(){
@@ -840,6 +777,55 @@ window.addEventListener('unhandledrejection', (e) => {
       el.preview.value = renderPreviewText();
       setStatus('');
     }
+
+    // === All JF wiring in one place (Item 3) ===
+    JFCustomWidget.subscribe('ready', () => {
+      // Bind the real API locally so we never hit the global again
+      // (Assumes you set `let JF = null;` in Item 1)
+      JF = JFCustomWidget;
+      Debug.log('JF ready');
+    
+      // Wire SUBMIT: send the freshest payload immediately (no debounce)
+      JF.subscribe('submit', () => {
+        Debug.log('JF submit → sendNow');
+        try { 
+          // If you kept autosave debounce, flush it first so we don't lose keystrokes
+          if (typeof autosend?.flush === 'function') autosend.flush();
+          sendNow(); 
+        } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
+      });
+    
+      // Wire POPULATE: accept either a JSON string or object
+      JF.subscribe('populate', (msg) => {
+        const raw = msg && msg.value;
+        try {
+          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw;
+          if (!data || !Array.isArray(data.selected)) return;
+    
+          state.selections.clear();
+          data.selected.forEach(r => {
+            const cat = r.category || 'general';
+            const m = ensureCatMap(cat);
+            const k = `${r.duty}\u0001${r.title || ''}`;
+            m.set(k, { duty: r.duty, title: r.title, primary: !!r.primary });
+          });
+    
+          renderSummary(); // your existing summary renderer
+        } catch (err) {
+          console.warn('populate parse issue', err);
+        }
+      });
+    
+      // Initialize the UI/data now that we are in a real JF widget frame
+      try { init(); } catch (e) { Debug.log('init error', e?.message || e); }
+    
+      // Size the frame once on load (optional, safe-guarded)
+      try { JF.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
+    
+      // If you implemented Item 1's pending-send mechanism, flush it now
+      if (typeof flushIfReady === 'function') flushIfReady();
+    });
+
 
     document.addEventListener('DOMContentLoaded', () => {
     const stageEmpty = !document.getElementById('stage')?.firstChild;
