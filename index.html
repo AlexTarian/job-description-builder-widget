@@ -186,6 +186,20 @@ window.addEventListener('unhandledrejection', (e) => {
   function toString(r){ try { return typeof r === 'string' ? r : JSON.stringify(r); } catch { return String(r); } }
 });
 
+  // --- JF helpers: safe presence check + race-proof waiter ---
+  function hasJF() {
+    return typeof window.JFCustomWidget !== 'undefined' &&
+           typeof window.JFCustomWidget.subscribe === 'function';
+  }
+  function whenJF(cb) {
+    if (hasJF()) return cb(window.JFCustomWidget);
+    const id = setInterval(() => {
+      if (hasJF()) { clearInterval(id); cb(window.JFCustomWidget); }
+    }, 50);
+    setTimeout(() => clearInterval(id), 5000); // safety cap
+  }
+
+
   (function(){
     // ===== State =====
     const state = {
@@ -372,24 +386,23 @@ window.addEventListener('unhandledrejection', (e) => {
         Debug.log('sendSubmit failed', e?.message || e);
       }
     };
+
+    // Wire up JF subscriptions only after the real API exists
+    whenJF((JF) => {
+      // Jotform signals the iframe is ready
+      JF.subscribe('ready', init);
     
-    if (typeof JFCustomWidget.subscribe === 'function'){
-      JFCustomWidget.subscribe('submit', () => {
+      // On submit: send the freshest payload NOW (no debounce)
+      JF.subscribe('submit', () => {
         Debug.log('JFCustomWidget.submit fired (sending value now)');
         try { sendNow(); } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
       });
-    }
     
-    if (typeof JFCustomWidget.subscribe === 'function'){
-      JFCustomWidget.subscribe('submit', () => {
-        Debug.log('JFCustomWidget.submit fired (sending value now)');
-        try { sendNow(); } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
-      });
-    
-      JFCustomWidget.subscribe('populate', (msg) => {
+      // On populate: accept string or object
+      JF.subscribe('populate', (msg) => {
         const raw = msg && msg.value;
-        try{
-          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw; // accept both
+        try {
+          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw;
           if (!data || !Array.isArray(data.selected)) return;
           state.selections.clear();
           data.selected.forEach(r=>{
@@ -399,11 +412,11 @@ window.addEventListener('unhandledrejection', (e) => {
             m.set(k, { duty:r.duty, title:r.title, primary: !!r.primary });
           });
           renderSummary();
-        }catch(err){
+        } catch (err) {
           console.warn('populate parse issue', err);
         }
       });
-    }
+    });
 
     const autosend = debounce(sendNow, 400, 2000);
     const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
@@ -795,11 +808,13 @@ window.addEventListener('unhandledrejection', (e) => {
       setStatus('');
     }
 
-    if (window.JFCustomWidget && typeof JFCustomWidget.subscribe === 'function') {
-      JFCustomWidget.subscribe('ready', init);
-    } else {
-      document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+    const stageEmpty = !document.getElementById('stage')?.firstChild;
+    if (stageEmpty) {
+      Debug.log('fallback init on DOMContentLoaded');
+      try { init(); } catch (e) { Debug.log('fallback init error', e?.message || e); }
     }
+  });
 
   })();
   </script>
