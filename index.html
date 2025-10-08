@@ -354,6 +354,25 @@ window.addEventListener('unhandledrejection', (e) => {
       setStatus('');
       try { JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); } catch {}
     }
+
+    // ---- Cached value + helpers (place near sendNow/buildPayload) ----
+    let pendingValue = null;
+    
+    function buildValue() {
+      const payload = buildPayload();
+      return JSON.stringify(payload);
+    }
+    
+    function flushIfReady() {
+      if (!hasJF() || pendingValue == null) return;
+      try {
+        window.JFCustomWidget.sendSubmit({ valid: true, value: pendingValue });
+        Debug.log('sendSubmit ok type= string len=', pendingValue.length);
+        pendingValue = null;
+      } catch (e) {
+        Debug.log('sendSubmit failed (flush)', e?.message || e);
+      }
+    }
   
     function buildPayload(){
       const out = { primary:[], other:[], selected:[], description:'' };
@@ -378,10 +397,15 @@ window.addEventListener('unhandledrejection', (e) => {
 
     const sendNow = () => {
       try {
-        const payload = buildPayload();
-        const value = JSON.stringify(payload);  // <-- always a string
-        JFCustomWidget.sendSubmit({ valid: true, value });
-        Debug.log('sendSubmit ok type=', typeof value, 'len=', value.length);
+        pendingValue = buildValue(); // always (re)cache latest
+        if (hasJF()) {
+          window.JFCustomWidget.sendSubmit({ valid: true, value: pendingValue });
+          Debug.log('sendSubmit ok type= string len=', pendingValue.length);
+          pendingValue = null;
+        } else {
+          Debug.log('JF not ready yet; will flush on ready (queued len=', pendingValue.length, ')');
+          whenJF(() => flushIfReady());
+        }
       } catch (e) {
         Debug.log('sendSubmit failed', e?.message || e);
       }
@@ -418,7 +442,16 @@ window.addEventListener('unhandledrejection', (e) => {
       });
     });
 
-    const autosend = debounce(sendNow, 400, 2000);
+    const autosend = debounce(() => {
+      // Don’t error if JF isn’t here yet—just cache and attempt a flush
+      pendingValue = buildValue();
+      if (hasJF()) {
+        flushIfReady();
+      } else {
+        whenJF(() => flushIfReady());
+      }
+    }, 400, 2000);
+
     const syncOutput = () => { el.preview.value = renderPreviewText(); autosend(); };
   
     function resize(){ try{ JFCustomWidget.requestFrameResize({ height: document.documentElement.scrollHeight }); }catch{} }
