@@ -379,10 +379,17 @@ window.addEventListener('unhandledrejection', (e) => {
         try { sendNow(); } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
       });
     }
+    
+    if (typeof JFCustomWidget.subscribe === 'function'){
+      JFCustomWidget.subscribe('submit', () => {
+        Debug.log('JFCustomWidget.submit fired (sending value now)');
+        try { sendNow(); } catch (e) { Debug.log('sendNow error on submit', e?.message || e); }
+      });
+    
       JFCustomWidget.subscribe('populate', (msg) => {
         const raw = msg && msg.value;
         try{
-          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw; // <-- accept both
+          const data = (raw && typeof raw === 'string') ? JSON.parse(raw) : raw; // accept both
           if (!data || !Array.isArray(data.selected)) return;
           state.selections.clear();
           data.selected.forEach(r=>{
@@ -742,6 +749,7 @@ window.addEventListener('unhandledrejection', (e) => {
     
     async function init(){
       Debug.log('init() start');
+      Debug.log('env:', window.self === window.top ? 'local-dev (shim)' : 'jotform-iframe (real API)');
       const relUrl = new URL('./assets/duties/duties.json', location.href).href;
       const absUrl = 'https://AlexTarian.github.io/job-description-builder-widget/assets/duties/duties.json';
     
