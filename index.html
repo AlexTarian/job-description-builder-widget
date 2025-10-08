@@ -371,17 +371,44 @@
       };
       setStepMeta(); resize();
     }
+
+    // Update one tile’s visuals without rebuilding the whole list
+    function setTileState(tile, selectedRec){
+      // classes
+      tile.classList.toggle('primary',  !!(selectedRec && selectedRec.primary));
+      tile.classList.toggle('secondary',!!(selectedRec && !selectedRec.primary));
+      if (!selectedRec) {
+        tile.classList.remove('primary','secondary');
+      }
+    
+      // star + subtext
+      const star = tile.querySelector('.star');
+      const sub  = tile.querySelector('.sub');
+    
+      if (selectedRec) {
+        const isPrimary = !!selectedRec.primary;
+        star.className = 'star ' + (isPrimary ? 'active' : 'secondary');
+        star.setAttribute('aria-pressed', String(isPrimary));
+        if (sub) sub.textContent = isPrimary ? 'Primary' : 'Secondary';
+        else tile.querySelector('.txt')
+          .insertAdjacentHTML('beforeend', `<div class="sub">${isPrimary ? 'Primary' : 'Secondary'}</div>`);
+      } else {
+        star.className = 'star gray';
+        star.setAttribute('aria-pressed', 'false');
+        if (sub) sub.textContent = 'Tap to Select';
+      }
+    }
   
     function renderDuties(){
       state.flow = 'duties';
       const cat = currentCatKey();
-      const isNewCategory = state.prevCategoryKey !== cat;   // << NEW
+      const isNewCategory = state.prevCategoryKey !== cat;
       const catMeta = state.categories.find(c=>c.key===cat);
       const items = (state.dutiesByCategory.get(cat) || []).slice();
     
       // read old scroll only if staying on same category
       const oldList = el.stage.querySelector('.list');
-      const prevScroll = (!isNewCategory && oldList) ? oldList.scrollTop : 0;  // << CHANGED
+      const prevScroll = (!isNewCategory && oldList) ? oldList.scrollTop : 0;
     
       el.wizTitle.textContent = `Select duties: ${catMeta?.label||cat}`;
       el.wizSub.textContent = 'Tap tiles to select/deselect applicable job duties. Tap ★ to mark duties as primary tasks.';
@@ -389,39 +416,80 @@
       el.nextBtn.textContent = 'Next';
       el.nextBtn.disabled = false;
     
-      const list = document.createElement('div'); list.className='list';
+      // Build index for fast lookups from data-key → { duty, title }
+      const itemsByKey = new Map(items.map(it => [keyFrom(it), it]));
       const selMap = ensureCatMap(cat);
+    
+      // (Re)build list only when switching categories (or first time)
+      const list = document.createElement('div');
+      list.className='list';
     
       items.forEach(it=>{
         const k = keyFrom(it);
-        const selected = selMap.has(k);
-        const v = selected ? selMap.get(k) : { ...it, primary:false };
-    
+        const selected = selMap.get(k); // undefined or {duty,title,primary}
         const tile = document.createElement('div');
-        tile.className = 'tile' + (selected ? (v.primary ? ' primary' : ' secondary') : '');
-        tile.tabIndex=0;
+        tile.className = 'tile';
+        tile.tabIndex = 0;
         tile.dataset.key = k;
     
-        const starCls = selected ? (v.primary ? 'star active' : 'star secondary') : 'star gray';
-        const subTxt = selected ? (v.primary ? 'Primary' : 'Secondary') : 'Tap to Select';
-    
+        // initial markup (no conditional classes yet)
         tile.innerHTML = `
           <i class="accent"></i>
-          <button class="${starCls}" type="button" aria-pressed="${v.primary}">★</button>
-          <div class="txt"><div class="title">${it.duty}</div>${subTxt?`<div class="sub">${subTxt}</div>`:''}</div>`;
+          <button class="star gray" type="button" aria-pressed="false">★</button>
+          <div class="txt">
+            <div class="title">${it.duty}</div>
+            <div class="sub">Tap to Select</div>
+          </div>
+        `;
     
-        const toggle = () => { state.lastKey = k; toggleDuty(cat, it); renderDuties(); };
-        const toggleStar = (e) => { e.stopPropagation(); state.lastKey = k; togglePrimary(cat, it); renderDuties(); };
-    
-        tile.onclick = toggle;
-        tile.onkeydown = (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } };
-        tile.querySelector('.star').onclick = toggleStar;
+        // now set visual state based on current selection
+        setTileState(tile, selected);
     
         list.appendChild(tile);
       });
     
+      // Replace stage content
       el.stage.innerHTML = '';
       el.stage.appendChild(list);
+    
+      // Single delegated handler for the entire list
+      list.addEventListener('click', (e) => {
+        const tile = e.target.closest('.tile');
+        if (!tile) return;
+        const k = tile.dataset.key;
+        const it = itemsByKey.get(k);
+        if (!it) return;
+    
+        const clickedStar = e.target.closest('button.star');
+    
+        if (clickedStar) {
+          // Toggle primary (auto-select if not selected)
+          togglePrimary(cat, it);
+        } else {
+          // Toggle selection
+          toggleDuty(cat, it);
+        }
+    
+        // Reflect new state on THIS tile only
+        const rec = ensureCatMap(cat).get(k);
+        setTileState(tile, rec);
+        state.lastKey = k;           // optional: for focus persistence
+      });
+    
+      // Keyboard toggle (delegated)
+      list.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const tile = e.target.closest('.tile');
+        if (!tile) return;
+        e.preventDefault();
+        const k = tile.dataset.key;
+        const it = itemsByKey.get(k);
+        if (!it) return;
+        toggleDuty(cat, it);
+        const rec = ensureCatMap(cat).get(k);
+        setTileState(tile, rec);
+        state.lastKey = k;
+      });
     
       // restore or reset scroll/focus
       requestAnimationFrame(() => {
@@ -437,13 +505,17 @@
         if(state.currentIndex===0){ renderCategories(); }
         else { state.currentIndex--; renderDuties(); }
       };
-      el.nextBtn.onclick = ()=>{ state.currentIndex++; if(state.currentIndex >= state.categoryOrder.length){ renderSummary(); } else { renderDuties(); } };
+      el.nextBtn.onclick = ()=>{
+        state.currentIndex++;
+        if(state.currentIndex >= state.categoryOrder.length){ renderSummary(); }
+        else { renderDuties(); }
+      };
     
-      setStepMeta(); 
+      setStepMeta();
       resize();
     
-      // remember we rendered this category
-      state.prevCategoryKey = cat;  // << NEW
+      // remember category rendered
+      state.prevCategoryKey = cat;
     }
   
     function renderSummary(){
