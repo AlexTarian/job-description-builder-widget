@@ -342,22 +342,23 @@ window.addEventListener('unhandledrejection', (e) => {
       });
       return out;
     }
-    
-    // ===== Autosave to Jotform =====
+
     const sendNow = () => {
       try {
+        const payload = buildPayload();
         JFCustomWidget.sendSubmit({
           valid: true,
-          value: buildPayload()
+          value: SEND_AS_STRING ? JSON.stringify(payload) : payload
         });
       } catch (e) {
-        console.error('sendSubmit failed', e);
+        Debug.log('sendSubmit failed', e && e.message);
       }
     };
     
     if (typeof JFCustomWidget.subscribe === 'function'){
       JFCustomWidget.subscribe('submit', () => {
-        autosend.flush(); // make sure value is sent right as Jotform submits
+        Debug.log('JFCustomWidget.submit fired (flushing latest value)');
+        autosend.flush();  // guarantees the latest payload is sent
       });
       JFCustomWidget.subscribe('populate', (msg) => {
         const raw = msg && msg.value;
